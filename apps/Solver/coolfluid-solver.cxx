@@ -233,19 +233,19 @@ int main(int argc, char** argv)
       {
 
 #ifdef CF_HAVE_BOOST_1_42
-	std::string filename = ditr->filename();
+  std::string filename = ditr->filename();
 #else
-	std::string filename = (ditr->path()).filename().native();
+  std::string filename = (ditr->path()).filename().native();
 #endif
 
-	bool is_config = StringOps::startsWith(filename, "config") && StringOps::endsWith(filename, ".log"); 
-	bool is_output = StringOps::endsWith(filename, "-output.log"); 
-	
-	if ( !is_directory( *ditr ) && ( is_config || is_output ) )
-	{
-	  CFLog(VERBOSE, "removing file: " << filename << "\n");
-	  try { filesystem::remove(*ditr); } catch (...) {};
-	}
+  bool is_config = StringOps::startsWith(filename, "config") && StringOps::endsWith(filename, ".log"); 
+  bool is_output = StringOps::endsWith(filename, "-output.log"); 
+  
+  if ( !is_directory( *ditr ) && ( is_config || is_output ) )
+  {
+    CFLog(VERBOSE, "removing file: " << filename << "\n");
+    try { filesystem::remove(*ditr); } catch (...) {};
+  }
       }
     }
     PE::GetPE().setBarrier("Default");
@@ -286,10 +286,10 @@ int main(int argc, char** argv)
       char ans;
       bool first_pass = true;
       do {
-	if (!first_pass) { CFLog(INFO, "Please type a 'y' or an 'n'.\n"); }
-	CFout << "Continue (y/n) ?\n";
-	std::cin >> ans;
-	first_pass = false;
+            if (!first_pass) { CFLog(INFO, "Please type a 'y' or an 'n'.\n"); }
+            CFout << "Continue (y/n) ?\n";
+            std::cin >> ans;
+            first_pass = false;
       }
       while((ans !='Y')&&(ans !='N')&&(ans !='y')&&(ans !='n'));
     }
@@ -358,18 +358,18 @@ int main(int argc, char** argv)
       const CFreal tolerance = std::abs(options.residual - totalResidual) * 100.0 / std::abs(options.residual);
       
       CFLog(INFO, "\n"
-	    << "Target   residual [" << options.residual << "]\n"
-	    << "Achieved residual [" << totalResidual << "]\n"
-	    << "Target  diff      [" << options.tolerance << "%]\n"
-	    << "Percent diff      [" << tolerance << "%]\n\n");
+      << "Target   residual [" << options.residual << "]\n"
+      << "Achieved residual [" << totalResidual << "]\n"
+      << "Target  diff      [" << options.tolerance << "%]\n"
+      << "Percent diff      [" << tolerance << "%]\n\n");
       
       // test succeed if the tolerance is smaller than the threshold one
       return_value = (tolerance > options.tolerance) ? 1 : 0;
       
       if (return_value == 1) {
-	const string msg = "Test failed with a " + StringOps::to_str(tolerance) + 
-	  "% error (max allowed is " + StringOps::to_str(options.tolerance) + "%)";
-	throw Common::BadValueException(FromHere(), msg);
+  const string msg = "Test failed with a " + StringOps::to_str(tolerance) + 
+    "% error (max allowed is " + StringOps::to_str(options.tolerance) + "%)";
+  throw Common::BadValueException(FromHere(), msg);
       }
     }
     

@@ -1055,7 +1055,8 @@ sub run_configuration() # run configuration
 	{ $other_options .= " -DCMAKE_BUILD_TYPE=$caps_build";  }
   }
 
-  my $args = "cmake $comp_options -DCMAKE_C_COMPILER=$cc -DCMAKE_CXX_COMPILER=$cxx -DCMAKE_Fortran_COMPILER=$fc -DCMAKE_CUDA_COMPILER=$cudac -G\"$gen\" $other_options $plugin_options $coolfluid_dir";
+  # export compile_commands.json
+  my $args = "cmake $comp_options -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=$cc -DCMAKE_CXX_COMPILER=$cxx -DCMAKE_Fortran_COMPILER=$fc -DCMAKE_CUDA_COMPILER=$cudac -G\"$gen\" $other_options $plugin_options $coolfluid_dir";
 
   print run_command($args);
 }
