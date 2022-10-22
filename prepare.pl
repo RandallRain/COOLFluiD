@@ -994,6 +994,7 @@ sub setup_cfgoptions()
 
 #==========================================================================
 
+# Cmake Configuration
 sub run_configuration() # run configuration
 {
   my $build = get_build();

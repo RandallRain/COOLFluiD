@@ -1,0 +1,556 @@
+-------------------------------------------------------------
+Creating Simulation
+-------------------------------------------------------------
+Configuration of Simulator
+-------------------------------------------------------------
+-------------------------------------------------------------
+-------------------------------------------------------------
+Loading external modules
+Initiating environment of loaded modules
+Initiated PETSc
+-------------------------------------------------------------
+-------------------------------------------------------------
+#
+###### STARTING SUBSYSTEM [SubSystem] ######
+#
+-------------------------------------------------------------
+Building SubSystem
+Name : SubSystem
+Type : StandardSubSystem
+-------------------------------------------------------------
+#
+###### CONFIG PHASE #################
+#
+-------------------------------------------------------------
+Setting Namespace : Default
+MeshData          : Default
+PhysicalModelName : Euler2D
+PhysicalModelType : Euler2D
+SubSysStatus      : SubSystemStatus
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating MeshCreator : CFmeshFileReader
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating MeshAdapterMethod : Null1
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating CouplerMethod : Null2
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating SpaceMethod : CellCenterFVM
+CellCenterFVM: configureGeoDataComputer()
+CellCenterFVM: configureFluxSplitter()
+CellCenterFVM: configureDiffusiveFluxComputer()
+CellCenterFVM: configureVarSetTransformers()
+CellCenterFVM: configureJacobianLinearizer()
+CellCenterFVM: configurePolyReconstructor()
+CellCenterFVM: configureLimiter()
+CellCenterFVM: configureNodalStatesExtrapolator()
+CellCenterFVM: configureEquationFilters()
+CellCenterFVM: configureSourceTermComputer()
+CellCenterFVM: Using GeoDataComputer: FVMCC
+CellCenterFVM: Using FluxSplitter: Roe
+CellCenterFVM: Using Update VarSet: Cons
+CellCenterFVM: Using Solution VarSet: Cons
+CellCenterFVM: Using Diffusive VarSet: Null
+CellCenterFVM: Using Linear VarSet: Roe
+CellCenterFVM: Using NodalStatesExtrapolator: DistanceBased
+SETUP type = LeastSquareP1Setup
+SETUP name = Setup1
+SETUP type = LeastSquareP1UnSetup
+SETUP name = UnSetup1
+PREPROCESS type = Null
+PREPROCESS name = PreProcess1
+CellCenterFVM: Using ComputeRHS: NumJacob
+INIT type = InitState
+INIT name = InField
+BC type = SuperInletFVMCC
+BC name = Jet1
+BC type = SuperOutletFVMCC
+BC name = Jet2
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating ErrorEstimatorMethod : Null4
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating LinearSystemSolver : BwdEulerLSS
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating ConvergenceMethod : BwdEuler
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating DataProcessing : Null7
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating DataProcessing : Null8
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating OutputFormatter : Tecplot
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating OutputFormatter : CFmesh
+-------------------------------------------------------------
+WARNING : Unused User Configuration Arguments:
+Simulator.SubSystem.BwdEuler.Data.Norm L2
+Simulator.SubSystem.CFmeshFileReader.ParReadCFmesh.ParCFmeshFileReader.NbOverlapLayers 4
+Simulator.SubSystem.CFmeshFileReader.THOR2CFmesh.Discontinuous true
+Simulator.SubSystem.CFmeshFileReader.THOR2CFmesh.SolutionOrder P0
+Simulator.SubSystem.ConvRate 1
+Simulator.SubSystem.ConvergenceFile convergence.plt
+Simulator.SubSystem.ShowRate 1
+Simulator.SubSystem.Tecplot.Data.updateVar Cons
+
+#
+###### SOCKETS PLUG PHASE ###########
+#
+#
+###### BUILD PHASE ##################
+#
+-------------------------------------------------------------
+Setting up all PhysicalModel's
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+Setting up Physical Model [Euler2D]
+-------------------------------------------------------------
+-------------------------------------------------------------
+Setting up all MeshCreator's
+-------------------------------------------------------------
+-------------------------------------------------------------
+Building MeshData's
+-------------------------------------------------------------
+-------------------------------------------------------------
+MeshCreator [CFmeshFileReader] Generate or Read Mesh
+
+Memory usage before building mesh: 4.25 MB
+
+Reading THOR2CFmesh took: 0.003804s
+Conversion THOR2CFmesh took: 0.003144s
+Original NbEquations = 4
+Final NbEquations    = 4
+Memory Usage before assembling connectivity: 4.59375 MB
+ParCFmeshFileReader::moveElementData() => start memory usage: 4.59375 MB
+ParCFmeshFileReader::buildOverlapLayers()
+ParCFmeshFileReader::moveElementData() => end memory usage: 5.1875 MB
+Reading data from jets2DFVM.CFmesh took 0.564387s
+Memory Usage after mesh reading: 5.44531 MB
+Building TRS: InnerCells
+nbCells = 3178, nbStates = 3178
+FVMCC BoundaryFaces [160]
+FVMCC Max Total NbFaces [9534]
+FVMCC Total nb faces [4847]
+FVMCC Inner nb faces [4687]
+FVMCC Boundary and Partition faces [160]
+Building TRS: InnerFaces
+FVM Faces created : 4847
+Building TRS: SuperOutlet
+Built TRS named SuperOutlet
+Building TRS: SuperInlet
+Built TRS named SuperInlet
+Number of partition faces detected = 0
+Building TRS: PartitionFaces
+Built PartitionFaces TRS 
+Building MeshData from ./jets2DFVM.CFmesh took 71.3558s
+Building the mesh took: 71.3573s
+
+Memory usage after building mesh: 5.85938 MB
+-------------------------------------------------------------
+-------------------------------------------------------------
+MeshCreator [CFmeshFileReader] Building Mesh Data
+-------------------------------------------------------------
+Building TRS info for MeshData in Namespace Default
+#
+###### SETUP PHASE ##################
+#
+-------------------------------------------------------------
+Setting up DataPreProcessing's
+-------------------------------------------------------------
+Setting up MeshAdapterMethod's
+-------------------------------------------------------------
+Setting up ConvergenceMethod's
+-------------------------------------------------------------
+Setting up LinearSystemSolver's
+-------------------------------------------------------------
+Setting up SpaceMethod's
+FVMCCGeoDataComputer::computeCellVolumes() = > [0] negative volumes detected
+-------------------------------------------------------------
+Setting up ErrorEstimatorMethod's
+-------------------------------------------------------------
+Setting up DataPostProcessing's
+-------------------------------------------------------------
+Setting up CouplerMethod's
+-------------------------------------------------------------
+CouplerMethod's setup
+-------------------------------------------------------------
+CouplerMethod's write interface coordinates
+-------------------------------------------------------------
+CouplerMethod's read interface coordinates
+-------------------------------------------------------------
+CouplerMethod's match mesh and write
+-------------------------------------------------------------
+CouplerMethod's read match mesh
+-------------------------------------------------------------
+Setting up OutputFormatter's
+
+-------------------------------------------------------------
+Initializing solution
+-------------------------------------------------------------
+Initializing solution of method [CellCenterFVM]
+-------------------------------------------------------------
+Writing initial solution ... 
+Writing solution to ./jets2DFVM_out.plt
+Writing took 0.291411s
+ParCFmeshFileWriter::writeToFile() => IO rank is 0
+Element written 
+Nodes written 
+States written 
+Writing solution to: ./jets2DFVM_out.CFmesh
+Writing took 0.044641s
+-------------------------------------------------------------
+#
+###### RUN PHASE ####################
+#
+BwdEuler : assembled linear system in 0.399565s
+KSP convergence reached at iteration: 25
+BwdEuler : solved linear system in 0.045404s
+Iter: 1       Res: [    0.63171165 0.70651055 1.4691263 ]  CFL: 30       CPUTime: 0.414702 Mem: 17.9922 MB
+
+BwdEuler : assembled linear system in 0.387589s
+KSP convergence reached at iteration: 26
+BwdEuler : solved linear system in 0.021296s
+Iter: 2       Res: [    0.8239728 0.85705555 1.6321258 ]  CFL: 300      CPUTime: 0.825355 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38662s
+KSP convergence reached at iteration: 26
+BwdEuler : solved linear system in 0.02097s
+Iter: 3       Res: [    0.37765635 0.46009926 1.183771 ]  CFL: 3000     CPUTime: 1.234744 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387802s
+KSP convergence reached at iteration: 26
+BwdEuler : solved linear system in 0.020735s
+Iter: 4       Res: [    -0.079911565 -0.010157844 0.74802917 ]  CFL: 30000    CPUTime: 1.645059 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.388402s
+KSP convergence reached at iteration: 26
+BwdEuler : solved linear system in 0.021233s
+Iter: 5       Res: [    -0.47437716 -0.37979956 0.34357922 ]  CFL: 300000   CPUTime: 2.056559 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.385456s
+KSP convergence reached at iteration: 27
+BwdEuler : solved linear system in 0.021466s
+Iter: 6       Res: [    -0.82003694 -0.76233137 -0.0035020321 ]  CFL: 3000000  CPUTime: 2.465336 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.388301s
+KSP convergence reached at iteration: 28
+BwdEuler : solved linear system in 0.022271s
+Iter: 7       Res: [    -1.1196762 -1.0767987 -0.29811418 ]  CFL: 30000000 CPUTime: 2.877659 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386927s
+KSP convergence reached at iteration: 28
+BwdEuler : solved linear system in 0.02215s
+Iter: 8       Res: [    -1.3974435 -1.3543832 -0.57841175 ]  CFL: 1e+08    CPUTime: 3.288477 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386799s
+KSP convergence reached at iteration: 29
+BwdEuler : solved linear system in 0.023576s
+Iter: 9       Res: [    -1.6509797 -1.6242107 -0.8340927 ]  CFL: 1e+08    CPUTime: 3.696557 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.384863s
+KSP convergence reached at iteration: 29
+BwdEuler : solved linear system in 0.023578s
+Iter: 10      Res: [    -1.7489796 -1.8111883 -0.93321531 ]  CFL: 1e+08    CPUTime: 4.106697 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.385979s
+KSP convergence reached at iteration: 27
+BwdEuler : solved linear system in 0.021763s
+Iter: 11      Res: [    -1.9821227 -2.0709295 -1.1619188 ]  CFL: 1e+08    CPUTime: 4.516307 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386619s
+KSP convergence reached at iteration: 26
+BwdEuler : solved linear system in 0.020175s
+Iter: 12      Res: [    -2.0861455 -2.2086929 -1.2654817 ]  CFL: 1e+08    CPUTime: 4.924831 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386362s
+KSP convergence reached at iteration: 26
+BwdEuler : solved linear system in 0.020895s
+Iter: 13      Res: [    -2.1820454 -2.3015693 -1.3643498 ]  CFL: 1e+08    CPUTime: 5.333783 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.385734s
+KSP convergence reached at iteration: 25
+BwdEuler : solved linear system in 0.019691s
+Iter: 14      Res: [    -2.268115 -2.4137947 -1.4499012 ]  CFL: 1e+08    CPUTime: 5.740984 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387702s
+KSP convergence reached at iteration: 24
+BwdEuler : solved linear system in 0.020023s
+Iter: 15      Res: [    -2.3496014 -2.4752507 -1.5286696 ]  CFL: 1e+08    CPUTime: 6.1504   Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38672s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.017658s
+Iter: 16      Res: [    -2.4777361 -2.5594671 -1.6501788 ]  CFL: 1e+08    CPUTime: 6.556524 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386245s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018329s
+Iter: 17      Res: [    -2.5763958 -2.6958738 -1.7435358 ]  CFL: 1e+08    CPUTime: 6.962887 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386908s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018014s
+Iter: 18      Res: [    -2.635979 -2.7582318 -1.7992122 ]  CFL: 1e+08    CPUTime: 7.369626 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386452s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.017786s
+Iter: 19      Res: [    -2.7131566 -2.8443488 -1.8737686 ]  CFL: 1e+08    CPUTime: 7.775765 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387002s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.01832s
+Iter: 20      Res: [    -2.6094804 -2.7219449 -1.811784 ]  CFL: 1e+08    CPUTime: 8.178941 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387206s
+KSP convergence reached at iteration: 24
+BwdEuler : solved linear system in 0.018577s
+Iter: 21      Res: [    -2.9141338 -3.0318279 -2.1186198 ]  CFL: 1e+08    CPUTime: 8.58653  Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38828s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018674s
+Iter: 22      Res: [    -3.1860012 -3.2222427 -2.3888071 ]  CFL: 1e+08    CPUTime: 8.995291 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38777s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017886s
+Iter: 23      Res: [    -3.3252283 -3.3471452 -2.5211864 ]  CFL: 1e+08    CPUTime: 9.402822 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386746s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018173s
+Iter: 24      Res: [    -3.3826551 -3.4498611 -2.5761928 ]  CFL: 1e+08    CPUTime: 9.809621 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.385741s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018147s
+Iter: 25      Res: [    -3.4580002 -3.5257544 -2.6385389 ]  CFL: 1e+08    CPUTime: 10.215262 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386877s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.017879s
+Iter: 26      Res: [    -3.5028515 -3.5629476 -2.6782169 ]  CFL: 1e+08    CPUTime: 10.621884 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386621s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.018227s
+Iter: 27      Res: [    -3.5334451 -3.5955689 -2.7085257 ]  CFL: 1e+08    CPUTime: 11.028547 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387543s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018047s
+Iter: 28      Res: [    -3.5268981 -3.5906995 -2.7040483 ]  CFL: 1e+08    CPUTime: 11.435886 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386869s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018388s
+Iter: 29      Res: [    -3.5657375 -3.637743 -2.7424198 ]  CFL: 1e+08    CPUTime: 11.843079 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386599s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017741s
+Iter: 30      Res: [    -3.577741 -3.6972972 -2.7511597 ]  CFL: 1e+08    CPUTime: 12.249248 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387445s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018602s
+Iter: 31      Res: [    -3.6211332 -3.7263638 -2.7843249 ]  CFL: 1e+08    CPUTime: 12.657227 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386802s
+KSP convergence reached at iteration: 24
+BwdEuler : solved linear system in 0.019222s
+Iter: 32      Res: [    -3.6599322 -3.7238887 -2.8301985 ]  CFL: 1e+08    CPUTime: 13.064983 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386485s
+KSP convergence reached at iteration: 24
+BwdEuler : solved linear system in 0.019228s
+Iter: 33      Res: [    -3.6838081 -3.7322673 -2.8585157 ]  CFL: 1e+08    CPUTime: 13.472598 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387615s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018316s
+Iter: 34      Res: [    -3.7039255 -3.7497858 -2.8790398 ]  CFL: 1e+08    CPUTime: 13.88028 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386515s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018078s
+Iter: 35      Res: [    -3.7187191 -3.7634806 -2.8938414 ]  CFL: 1e+08    CPUTime: 14.286657 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387879s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018993s
+Iter: 36      Res: [    -3.698556 -3.7578535 -2.8755932 ]  CFL: 1e+08    CPUTime: 14.695353 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38672s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017087s
+Iter: 37      Res: [    -3.7048069 -3.7619026 -2.8814785 ]  CFL: 1e+08    CPUTime: 15.100792 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38709s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017671s
+Iter: 38      Res: [    -3.7341457 -3.7922875 -2.8990842 ]  CFL: 1e+08    CPUTime: 15.507375 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387054s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017519s
+Iter: 39      Res: [    -3.754918 -3.8143152 -2.9160422 ]  CFL: 1e+08    CPUTime: 15.913676 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.388117s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017186s
+Iter: 40      Res: [    -3.7628342 -3.818503 -2.939677 ]  CFL: 1e+08    CPUTime: 16.320865 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387495s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.018044s
+Iter: 41      Res: [    -3.774457 -3.8295866 -2.9493852 ]  CFL: 1e+08    CPUTime: 16.728214 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387096s
+KSP convergence reached at iteration: 21
+BwdEuler : solved linear system in 0.016908s
+Iter: 42      Res: [    -3.7814458 -3.8377255 -2.9569205 ]  CFL: 1e+08    CPUTime: 17.13393 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.388304s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017935s
+Iter: 43      Res: [    -3.787377 -3.8372076 -2.9623335 ]  CFL: 1e+08    CPUTime: 17.542038 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.385732s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017658s
+Iter: 44      Res: [    -3.7928266 -3.8500678 -2.9680783 ]  CFL: 1e+08    CPUTime: 17.947126 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387215s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017068s
+Iter: 45      Res: [    -3.8011285 -3.8555605 -2.9787171 ]  CFL: 1e+08    CPUTime: 18.353123 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387799s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017996s
+Iter: 46      Res: [    -3.8084589 -3.868378 -2.9856794 ]  CFL: 1e+08    CPUTime: 18.760697 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386208s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017228s
+Iter: 47      Res: [    -3.8099923 -3.8341419 -2.9848887 ]  CFL: 1e+08    CPUTime: 19.165826 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387855s
+KSP convergence reached at iteration: 23
+BwdEuler : solved linear system in 0.018258s
+Iter: 48      Res: [    -3.8086187 -3.8493564 -2.9823204 ]  CFL: 1e+08    CPUTime: 19.573662 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.3873s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017656s
+Iter: 49      Res: [    -3.7027129 -3.6623946 -2.8819997 ]  CFL: 1e+08    CPUTime: 19.980341 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386858s
+KSP convergence reached at iteration: 21
+BwdEuler : solved linear system in 0.016505s
+Iter: 50      Res: [    -3.7298208 -3.7523127 -2.9035692 ]  CFL: 1e+08    CPUTime: 20.385384 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387513s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.018342s
+Iter: 51      Res: [    -3.7852534 -3.9056523 -2.9618273 ]  CFL: 1e+08    CPUTime: 20.793029 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386708s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017477s
+Iter: 52      Res: [    -3.8706324 -3.9049019 -3.0487003 ]  CFL: 1e+08    CPUTime: 21.198876 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.385938s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017683s
+Iter: 53      Res: [    -3.8721017 -3.8604817 -3.048794 ]  CFL: 1e+08    CPUTime: 21.604285 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387824s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.018164s
+Iter: 54      Res: [    -3.8994556 -3.9546831 -3.0746604 ]  CFL: 1e+08    CPUTime: 22.01204 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.385321s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017595s
+Iter: 55      Res: [    -3.9218931 -3.9910021 -3.0956383 ]  CFL: 1e+08    CPUTime: 22.416596 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387022s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017508s
+Iter: 56      Res: [    -3.938787 -4.0017478 -3.1129886 ]  CFL: 1e+08    CPUTime: 22.822987 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386325s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017566s
+Iter: 57      Res: [    -3.9519005 -4.0067228 -3.125784 ]  CFL: 1e+08    CPUTime: 23.228629 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387163s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017112s
+Iter: 58      Res: [    -3.9590921 -4.0172387 -3.1333111 ]  CFL: 1e+08    CPUTime: 23.634626 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386586s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017252s
+Iter: 59      Res: [    -3.9685138 -4.0267906 -3.1432781 ]  CFL: 1e+08    CPUTime: 24.040341 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38559s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.01752s
+Iter: 60      Res: [    -3.97773 -4.03419 -3.1521566 ]  CFL: 1e+08    CPUTime: 24.445229 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387061s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017428s
+Iter: 61      Res: [    -3.9818995 -4.0435942 -3.1565834 ]  CFL: 1e+08    CPUTime: 24.851358 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.38545s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017945s
+Iter: 62      Res: [    -3.9876001 -4.0511301 -3.1620505 ]  CFL: 1e+08    CPUTime: 25.256596 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.386569s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017667s
+Iter: 63      Res: [    -3.9976789 -4.0602515 -3.1723004 ]  CFL: 1e+08    CPUTime: 25.662641 Mem: 18.5 MB
+
+BwdEuler : assembled linear system in 0.387845s
+KSP convergence reached at iteration: 22
+BwdEuler : solved linear system in 0.017399s
+Iter: 64      Res: [    -4.0077023 -4.0689956 -3.1822432 ]  CFL: 1e+08    CPUTime: 26.06967 Mem: 18.5 MB
+
+SubSystem WallTime: 26.1125s
+#
+###### UNSETUP PHASE ################
+#
+Total Number Iter: 64 Reached Residual: -4.0077 and took: 26.0698 sec
+Writing solution to ./jets2DFVM_out.plt
+Writing took 0.072338s
+ParCFmeshFileWriter::writeToFile() => IO rank is 0
+Nodes written 
+States written 
+Writing solution to: ./jets2DFVM_out.CFmesh
+Writing took 0.02504s
+-------------------------------------------------------------
+#
+###### SOCKETS UNPLUG PHASE #########
+#
+#
+###### DESTRUCTION SUBSYSTEM PHASE #########
+#
+Terminated PETSc
+-------------------------------------------------------------
+COOLFluiD Environment Terminated
+-------------------------------------------------------------
