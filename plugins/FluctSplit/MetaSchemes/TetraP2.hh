@@ -26,7 +26,8 @@ struct TetraP2
   template < unsigned int NODE >
   struct ShapeF
   {
-    /// computes  \f[ 1 - \ksi - \eta  - \zeta  \f]
+    ///< \ksi, latex error
+    /// computes  \f[ 1 - ksi - \eta  - \zeta  \f]
     template < typename COORD > inline static double lambda () { return  1. -  ( COORD::xi() + COORD::eta() + COORD::zeta() ) };
 
     /// Gives value of each shape funtion, the coordinates are a template parameter,

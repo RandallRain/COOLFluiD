@@ -53,8 +53,8 @@ template <> template <> struct TetraP1::SubElem<0>::SNode<2> { enum { ID = 2 }; 
 template <> template <> struct TetraP1::SubElem<0>::SNode<3> { enum { ID = 3 }; };
 
 ///////////////////////////////////////////////////////////////////////////////
-
-/// shape function node 0 \f[ N = 1 - \ksi - \eta ) \f]
+/// \ksi, latex error
+/// shape function node 0 \f[ N = 1 - ksi - \eta  \f]
 template <> template < typename COORD >
 double TetraP1::ShapeF<0>::value () { return 1.0 - ( COORD::xi() + COORD::eta() + COORD::zeta()); }
 

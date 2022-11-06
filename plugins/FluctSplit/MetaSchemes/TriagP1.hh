@@ -55,7 +55,8 @@ template <> template <> struct TriagP1::SubElem<0>::SNode<2> { enum { ID = 2 }; 
 ///////////////////////////////////////////////////////////////////////////////
 
 /// shape function node 0
-/// \f[ N = 1 - \ksi - \eta - \zeta \f]
+/// \kis, latex error
+/// \f[ N = 1 - ksi - \eta - \zeta \f]
 template <> template < typename COORD >
 double TriagP1::ShapeF<0>::value ()
 { return 1.0 - COORD::xi() - COORD::eta(); }
