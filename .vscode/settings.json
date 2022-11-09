@@ -1,7 +1,0 @@
-{
-    "editor.insertSpaces": true,
-    "files.associations": {
-        "*.CFcase": "properties",
-        "*.ci": "cpp"
-    }
-}
