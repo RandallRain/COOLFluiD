@@ -4,11 +4,10 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/lht/local/coolfluid_deps/x86_64/include"
+                "/home/liu/local/coolfluid_deps/x86_64/include"
                 // "/usr/lib/x86_64-linux-gnu/openmpi/include"
             ],
             "defines": [],
-            "compilerPath": "/home/lht/local/coolfluid_deps/x86_64/bin/mpic++",
             "cStandard": "gnu17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-gcc-x64",

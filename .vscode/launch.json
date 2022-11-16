@@ -5,13 +5,68 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "(gdb) Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/testCases/coolfluid-solver",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description":  "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Parallel Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/liu/local/coolfluid_deps/x86_64/bin/mpirun",
+            "args": [
+                "-n",
+                "2",
+                "${workspaceFolder}/testCases/coolfluid-solver",
+                "--scase",
+                "./jets2DFVMImpl.CFcase",
+                "--log", // DEBUG_MIN
+                "650",
+                "--wait",
+                "true"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/testCases",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description":  "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Serial Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/testCases/coolfluid-solver",
             "args": [
                 "--scase",
-                "./jets2DFVMImpl.CFcase"
+                "./jets2DFVMImpl.CFcase",
+                "--log", // DEBUG_MIN
+                "700"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/testCases",

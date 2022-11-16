@@ -284,14 +284,21 @@ int main(int argc, char** argv)
       CFLog(INFO, "Stopping to attach debugger ...\n");
       CFLog(INFO, "Current PID is [" << pid << "].\n");
       char ans;
-      bool first_pass = true;
-      do {
-            if (!first_pass) { CFLog(INFO, "Please type a 'y' or an 'n'.\n"); }
-            CFout << "Continue (y/n) ?\n";
-            std::cin >> ans;
-            first_pass = false;
+      // bool first_pass = true;
+      // do {
+      //       if (!first_pass) { CFLog(INFO, "Please type a 'y' or an 'n'.\n"); }
+      //       CFout << "Continue (y/n) ?\n";
+      //       std::cin >> ans;
+      //       first_pass = false;
+      // }
+      // while((ans !='Y')&&(ans !='N')&&(ans !='y')&&(ans !='n'));
+      if (cf_env.getCPURank() == 0)
+      {
+        CFout << "Please Input any char to continue: \n";
+        std::cin >> ans;
       }
-      while((ans !='Y')&&(ans !='N')&&(ans !='y')&&(ans !='n'));
+      // make all processor wait until give an input to processor 0
+      PE::GetPE().setBarrier("Default");
     }
     
     CFLog(VERBOSE,"-------------------------------------------------------------\n");
