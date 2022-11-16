@@ -1,5 +1,18 @@
+# build directory
 build/*
-packages/boost*
-testCases/*
+# external packages
+packages/*
+
+# case folder
+testCases/coolfluid*
+testCases/*.log
+testCases/*.plt.Default
+testCases/*_out.*
+
+# docNew
 docNew/html/*
 docNew/latex/*
+docNew/index.html
+
+# vscode
+.vscode/*
