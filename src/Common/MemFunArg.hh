@@ -27,7 +27,7 @@ Function for_each_if(InputIterator first, InputIterator last, Function fn, Predi
       // here you need the global rank
       const int rank = PE::GetPE().GetRank("Default");
       if (PE::GetPE().isRankInGroup(rank, (*first)->getNamespace())) {
-	fn (*first);
+	      fn (*first);
       }
     }
     ++first;
