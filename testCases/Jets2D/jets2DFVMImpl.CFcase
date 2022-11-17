@@ -1,3 +1,4 @@
+
 ################################################################################
 # 
 # This COOLFluiD CFcase file tests: 
@@ -16,7 +17,7 @@
 #
 
 # SubSystem Modules
-Simulator.Modules.Libs = libPetscI libCFmeshFileWriter libCFmeshFileReader libTecplotWriter libNavierStokes libFiniteVolume libFiniteVolumeNavierStokes libBackwardEuler libTHOR2CFmesh
+Simulator.Modules.Libs = libShapeFunctions libPetscI libCFmeshFileWriter libCFmeshFileReader libTecplotWriter libNavierStokes libFiniteVolume libFiniteVolumeNavierStokes libBackwardEuler libTHOR2CFmesh
 
 CFEnv.ExceptionLogLevel    = 1000
 CFEnv.DoAssertions         = true
@@ -35,8 +36,8 @@ CFEnv.RegistSignalHandlers = false
 #CFEnv.ErrorOnUnusedConfig = true
 
 # SubSystem Parameters
-Simulator.Paths.WorkingDir = ./Jets2D/
-Simulator.Paths.ResultsDir       = ./Jets2D/result
+Simulator.Paths.WorkingDir = ./Jets2D
+Simulator.Paths.ResultsDir = ./Jets2D/result
 
 Simulator.SubSystem.Default.PhysicalModelType     = Euler2D
 Simulator.SubSystem.Euler2D.refValues = 1. 2.83972 2.83972 6.532
@@ -58,11 +59,11 @@ Simulator.SubSystem.CFmesh.AppendIter = false
 Simulator.SubSystem.ConvRate            = 1
 Simulator.SubSystem.ShowRate            = 1
 
-#Simulator.SubSystem.StopCondition       = MaxNumberSteps
-#Simulator.SubSystem.MaxNumberSteps.nbSteps = 20
+Simulator.SubSystem.StopCondition = MaxNumberSteps
+Simulator.SubSystem.MaxNumberSteps.nbSteps = 5
 
-Simulator.SubSystem.StopCondition       = Norm
-Simulator.SubSystem.Norm.valueNorm      = -4.0
+# Simulator.SubSystem.StopCondition       = Norm
+# Simulator.SubSystem.Norm.valueNorm      = -4.0
 
 Simulator.SubSystem.Default.listTRS = InnerFaces SuperInlet SuperOutlet
 

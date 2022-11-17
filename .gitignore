@@ -5,9 +5,9 @@ packages/*
 
 # case folder
 testCases/coolfluid*
-testCases/*.log
-testCases/*.plt.Default
-testCases/*_out.*
+testCases/**/*.log
+testCases/**/*.plt.Default
+testCases/**/*_out.*
 
 # docNew
 docNew/html/*
