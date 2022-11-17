@@ -59,11 +59,11 @@ Simulator.SubSystem.CFmesh.AppendIter = false
 Simulator.SubSystem.ConvRate            = 1
 Simulator.SubSystem.ShowRate            = 1
 
-#Simulator.SubSystem.StopCondition       = MaxNumberSteps
-#Simulator.SubSystem.MaxNumberSteps.nbSteps = 20
+Simulator.SubSystem.StopCondition       = MaxNumberSteps
+Simulator.SubSystem.MaxNumberSteps.nbSteps = 5
 
-Simulator.SubSystem.StopCondition       = Norm
-Simulator.SubSystem.Norm.valueNorm      = -4.0
+# Simulator.SubSystem.StopCondition       = Norm
+# Simulator.SubSystem.Norm.valueNorm      = -4.0
 
 Simulator.SubSystem.Default.listTRS = InnerFaces SuperInlet SuperOutlet
 

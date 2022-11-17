@@ -249,9 +249,13 @@ public:
   /// Get current element
   Itr getElement(CFuint iElem)
   {
-    cf_assert(&_eData[_ePtr[iElem]] != CFNULL);
+    // cf_assert(&_eData[_ePtr[iElem]] != CFNULL);
+    // cf_assert(&_ePtr[iElem] != CFNULL);
+    // return Itr(&_eData[_ePtr[iElem]], &_ePtr[iElem]);
+    // use pointer not index to get the end
+    cf_assert((&_eData[0] + _ePtr[iElem]) != CFNULL);
     cf_assert(&_ePtr[iElem] != CFNULL);
-    return Itr(&_eData[_ePtr[iElem]], &_ePtr[iElem]);
+    return Itr(&_eData[0] + _ePtr[iElem], &_ePtr[iElem]);
   }
 
   /// Get the beginning of the array

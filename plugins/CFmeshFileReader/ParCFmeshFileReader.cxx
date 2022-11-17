@@ -2219,7 +2219,7 @@ void ParCFmeshFileReader::buildOverlapLayers(Framework::ElementDataArray<0>& loc
 			     (getReadData().getDimension()*localStateIDs.size()));
   
   ElementDataArray<0> tmpElem;
-  tmpElem.resize(maxNbElemPerProc, maxElemSize); // we want to reuse the same buffer
+  tmpElem.resize(maxNbElemPerProc+1, maxElemSize); // we want to reuse the same buffer
   
   ElementDataArray<0> overlapElem;
   
