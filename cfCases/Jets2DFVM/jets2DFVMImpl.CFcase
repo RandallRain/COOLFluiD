@@ -36,8 +36,8 @@ CFEnv.RegistSignalHandlers = false
 #CFEnv.ErrorOnUnusedConfig = true
 
 # SubSystem Parameters
-Simulator.Paths.WorkingDir = ./Jets2D
-Simulator.Paths.ResultsDir = ./Jets2D/result
+Simulator.Paths.WorkingDir = ./Jets2DFVM
+Simulator.Paths.ResultsDir = ./Jets2DFVM/result
 
 Simulator.SubSystem.Default.PhysicalModelType     = Euler2D
 Simulator.SubSystem.Euler2D.refValues = 1. 2.83972 2.83972 6.532
