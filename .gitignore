@@ -1,7 +1,7 @@
 # build directory
 build/*
 # external packages
-packages/*
+packages/**/*.tar.gz
 
 # case folder
 testCases/coolfluid*
