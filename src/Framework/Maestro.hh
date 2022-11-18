@@ -69,7 +69,7 @@ public: // functions
 
 protected: // data
 
-  /// Name of StopCriteria to configure
+  /// simulator in this maestro
   Common::SharedPtr<Simulator> m_sim;
 
   /// Save each iteration to different Tecplot file (with suffix _Globaliter#).

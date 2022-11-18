@@ -257,7 +257,7 @@ int main(int argc, char** argv)
     DirPaths::getInstance().addModuleDirs(options.libDir);
     
     // configure the environment
-    filesystem::path casefile;
+    filesystem::path casefile;  ///< CFcase file
     if ( !Common::StringOps::startsWith( options.scase_file,".") && !Common::StringOps::startsWith(options.scase_file,"/") )
       casefile  = Environment::DirPaths::getInstance().getBaseDir() / filesystem::path(options.scase_file);
     else
@@ -266,6 +266,7 @@ int main(int argc, char** argv)
     // parse configuration options for environment
     ConfigFileReader cfile_reader;
     ConfigArgs config_args;
+    // convert the casefile to config_args
     cfile_reader.parse ( casefile, config_args);
     // configure the environemt
     cf_env.configure ( config_args );
@@ -307,6 +308,7 @@ int main(int argc, char** argv)
     
     Common::SelfRegistPtr<Maestro> maestro;
     std::string maestro_str = "SimpleMaestro";
+    // map's find for key
     if ( config_args.find ("Maestro") != config_args.end() )
       maestro_str = config_args["Maestro"];
     
@@ -317,6 +319,7 @@ int main(int argc, char** argv)
    
     maestro.reset(prov->create(prov->getName()));
     maestro->setFactoryRegistry(fRegistry);
+    // configure maestro
     maestro->configure ( config_args );
     
     CFLog(INFO,"-------------------------------------------------------------\n");
@@ -328,6 +331,7 @@ int main(int argc, char** argv)
     SharedPtr < Simulator > sim ( new Simulator("Simulator") );
     sim->setFactoryRegistry(fRegistry);
     // give him the file to configure from
+    // give the case file, not the parsed config_args?
     sim->openCaseFile(casefile.string());
     
     CFLog(INFO,"-------------------------------------------------------------\n");
@@ -345,7 +349,7 @@ int main(int argc, char** argv)
     maestro->manage ( sim );
 
     // which subsystems will be controlled by meastro
-    std::string msg;
+    std::string msg;    ///< "SubName SubType ...."
     std::vector< string > subsysnames = sim->getSubSystemNames();
     std::vector< string > subsystypes = sim->getSubSystemTypes();
     cf_assert ( subsysnames.size() == subsystypes.size() );

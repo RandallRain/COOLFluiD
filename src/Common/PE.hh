@@ -28,6 +28,7 @@ namespace COOLFluiD {
 //////////////////////////////////////////////////////////////////////////////
 
 /// This class controls the Common environment
+/// parallel environment, all static member methods?
 /// @author Dries Kimpe
 class Common_API PE {
 public:
