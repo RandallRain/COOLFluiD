@@ -21,7 +21,7 @@ namespace COOLFluiD {
 
 //////////////////////////////////////////////////////////////////////////////
 
-/// This class describes the names of the singletons that ar activated when
+/// This class describes the names of the singletons that are activated when
 /// this Namespace is entered, thus specifying a sound context for the
 /// methods to operate.
 /// @author Tiago Quintino

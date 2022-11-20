@@ -66,6 +66,7 @@ Common::Signal::return_t SMaestro::control ( Common::Signal::arg_t input )
 
   std::vector< string > subsysnames;
   std::vector< string > subsystypes;
+  // translate the msg to subname and subtype
   for ( CFuint i = 0; i < split_strs.size(); ++i, ++i )
   {
     subsysnames.push_back ( split_strs[i] );
@@ -76,12 +77,14 @@ Common::Signal::return_t SMaestro::control ( Common::Signal::arg_t input )
 
   Common::SafePtr<EventHandler> event_handler = Environment::CFEnv::getInstance().getEventHandler();
 
+  // iterate all subsytstems
   std::vector<std::string>::const_iterator subSysName = subsysnames.begin();
   std::vector<std::string>::const_iterator subSysType = subsystypes.begin();
   for ( ;subSysName!=subsysnames.end(); ++subSysName, ++subSysType)
   {
     SimulationStatus& simStatus = SimulationStatus::getInstance();
     simStatus.resetAll();
+    // for every subsystem do this?
     simStatus.setSubSystems(subsysnames);
 
     Common::Signal::arg_t msg;
@@ -93,9 +96,11 @@ Common::Signal::return_t SMaestro::control ( Common::Signal::arg_t input )
     cf_assert(*subSysName == SubSystemStatusStack::getCurrentName());
     
     CFLog(INFO, "#\n###### STARTING SUBSYSTEM [" << *subSysName << "] ######\n#\n");
+    // build a subsystem in simulator according to msg(Name Type)
     event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_BUILDSUBSYSTEM"), msg );
     
     CFLog(INFO, "#\n###### CONFIG PHASE #################\n#\n");
+    // configure a subsystem in simulator according to msg
     event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_CONFIGSUBSYSTEM"), msg );
 
     CFLog(INFO, "#\n###### SOCKETS PLUG PHASE ###########\n#\n");

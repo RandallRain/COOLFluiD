@@ -179,6 +179,7 @@ void StandardSubSystem::configure ( Config::ConfigArgs& args )
   
   CFLog(VERBOSE, "StandardSubSystem::configure() => start\n");
   
+  // invoke parent configure
   SubSystem::configure(args);
   
   // set the physical model
