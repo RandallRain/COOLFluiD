@@ -107,8 +107,9 @@ Common::Signal::return_t SMaestro::control ( Common::Signal::arg_t input )
     event_handler->call_signal (event_handler->key(*subSysName, "CF_ON_MAESTRO_PLUGSOCKETS"), msg );
 
     CFLog(INFO, "#\n###### BUILD PHASE ##################\n#\n");
+    // Build Physical Models
     event_handler->call_signal (event_handler->key(*subSysName, "CF_ON_MAESTRO_BUILDPHYSICALMODEL"), msg );
-    // Read and Build Mesh(not Geometric Entity)
+    // Read and Build Mesh(TRSs)
     event_handler->call_signal (event_handler->key(*subSysName, "CF_ON_MAESTRO_BUILDMESHDATA"), msg );
     
     CFLog(INFO, "#\n###### SETUP PHASE ##################\n#\n");
