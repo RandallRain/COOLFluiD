@@ -314,6 +314,8 @@ private: // member data
   Common::SelfRegistPtr < DomainModel > m_domainmodel;
 
   /// storage of the connectivities
+  // GE Id -> State ID
+  // GE Id -> Node ID
   Common::GeneralStorage<ConnTable> m_connectivityStorage;
 
   /// storage of the connectivities
