@@ -82,6 +82,7 @@ void ParReadCFmesh<READER>::execute()
   READER mreader;
   mreader.setFactoryRegistry(getFactoryRegistry());
   
+  // configure READER
   this->configureNested(&mreader, m_stored_args);
   
   m_data->setDataSockets(socket_states, socket_nodes, &m_sockets);

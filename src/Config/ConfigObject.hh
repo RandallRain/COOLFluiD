@@ -61,6 +61,7 @@ public: // functions
   /// passed onto the object. This means that if used recursively all
   /// arguments are always passed and the configuration happens with
   /// both previuosly used and unused arguments.
+  /// invoke configure() in one nested layer
   /// @param nestConfig is a pointer to the nested object to configure
   virtual void configureNested(ConfigObject* nestConfig, ConfigArgs& args );
 

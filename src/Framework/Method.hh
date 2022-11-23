@@ -138,6 +138,8 @@ public: // functions
   virtual void run_function(const std::string & func) = 0;
 
   /// Get flag to know if method is to be called by a plugin and not by the subsystem
+  /// RootMethod: called by the subsystem
+  /// NotRootMethod: called by a plugin
   bool isNonRootMethod() { return m_isNonRootMethod; }
 
   /// Set flag to know if method is to be called by a plugin and not by the subsystem

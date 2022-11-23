@@ -110,6 +110,7 @@ private: // data
   Common::SharedPtr<CFmeshReaderData> m_data;
 
   /// string for configuring the converter
+  /// "convertFrom" parameter
   std::string m_converterStr;
 
   /// option to convert back to the original format

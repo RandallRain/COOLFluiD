@@ -74,6 +74,7 @@ protected: // data
   Framework::DataSocketSink<Framework::State*,Framework::GLOBAL> socket_states;
 
   /// the actual data to write to the file
+  // and to read from the file
   std::auto_ptr<Framework::CFmeshReaderSource> m_data;
 
 }; // class ReadBase

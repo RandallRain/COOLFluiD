@@ -167,6 +167,7 @@ void CFmeshReader::convertFormat()
 
   cf_assert(converter->isNotNull());
   (*converter)->setFactoryRegistry(getFactoryRegistry());
+  // configure when needed
   configureNested ( converter->getPtr(), originalArgs );
 
   CFLog(VERBOSE, "CFmeshReader::convertFormat() => 3\n");

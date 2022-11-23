@@ -347,7 +347,7 @@ void StandardSubSystem::buildMeshData()
   CFLog(NOTICE,"Setting up all MeshCreator's\n");
   CFLog(NOTICE,"-------------------------------------------------------------\n");
   
-  // finally setup the mesh creators
+  // setup MeshCreator method's data
   Common::for_each_if (m_meshCreator.begin(), m_meshCreator.end(), 
 		       mem_fun(&MeshCreator::setMethod),
 		       mem_fun(&MeshCreator::isNonRootMethod), false);
@@ -356,6 +356,7 @@ void StandardSubSystem::buildMeshData()
   CFLog(NOTICE,"Building MeshData's\n");
   CFLog(NOTICE,"-------------------------------------------------------------\n");
   
+  // Generates the Mesh in the MeshData and the connectivity.
   Common::for_each_if (m_meshCreator.begin(), m_meshCreator.end(), 
 		       mem_fun(&MeshCreator::generateMeshData),
 		       mem_fun(&MeshCreator::isNonRootMethod), false);

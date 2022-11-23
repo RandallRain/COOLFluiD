@@ -279,6 +279,7 @@ Common::Signal::return_t Simulator::configSubSystem(Common::Signal::arg_t eConfi
   
   Config::ConfigArgs local_args = m_sim_args;
   
+  // invoke subsystem configure() method
   configureNested ( m_subSys.getPtr(), local_args );
   
   if ( local_args.size() > 0 ) // some configurations where not used
