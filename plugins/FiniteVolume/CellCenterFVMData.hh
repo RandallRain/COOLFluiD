@@ -714,7 +714,7 @@ typedef Framework::MethodCommand<CellCenterFVMData> CellCenterFVMCom;
 /// Definition of a command provider for FiniteVolume
 typedef Framework::MethodCommand<CellCenterFVMData>::PROVIDER CellCenterFVMComProvider;
 
-/// Definition of a Strategy for FiniteElement
+/// Definition of a Strategy for Finite Volume Method
 typedef Framework::MethodStrategy<CellCenterFVMData> CellCenterFVMStrategy;
 
 /// Definition of a Strategy provider for FiniteElement
