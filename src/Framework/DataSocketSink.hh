@@ -149,6 +149,7 @@ DataSocketSink(const std::string& name, bool isEssential) :
   m_source(CFNULL),
   m_isEssential(isEssential)
 {
+  // Register and connect to source by name
   DataBroker::getInstance().registerSink ( this );
 }
 

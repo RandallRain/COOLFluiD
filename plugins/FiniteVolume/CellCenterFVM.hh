@@ -176,7 +176,7 @@ private: // member data
   /// The command to use for initializing the solution.
   std::vector<Common::SelfRegistPtr<CellCenterFVMCom> > _inits;
 
-  /// The command to use for computing the voundary conditions.
+  /// The command to use for computing the boundary conditions.
   std::vector<Common::SelfRegistPtr<CellCenterFVMCom> > _bcs;
 
   /// The command to use for the action before the mesh is updated

@@ -120,9 +120,11 @@ public: // functions
   void matchMethodSockets(std::vector<Method*> methodList);
 
   /// Get the needed sockets for this Method
+  /// DataSocketSink, owned by Others(MeshData?)
   std::vector<Common::SafePtr<BaseDataSocketSink> >  getNeededSockets();
 
   /// Get the provided sockets for this Method
+  /// DataSocketSource, owned by this method
   std::vector<Common::SafePtr<BaseDataSocketSource> > getProvidedSockets();
 
   /// Get All DataSockets on this Method, both Sinks and Sources
