@@ -81,7 +81,8 @@ void ParReadCFmesh<READER>::execute()
   
   READER mreader;
   mreader.setFactoryRegistry(getFactoryRegistry());
-  
+
+  // Read Mesh
   // configure READER
   this->configureNested(&mreader, m_stored_args);
   
@@ -108,6 +109,8 @@ void ParReadCFmesh<READER>::execute()
   stp.start();
 
   boost::filesystem::path filename = Environment::DirPaths::getInstance().getWorkingDir() / this->getMethodData().getFileName();
+  // Reading mesh data into CFmeshReaderSource
+  // just like BF dump?
   mreader.readFromFile( filename );
 
   CFLog(INFO,"Reading data from " << this->getMethodData().getFileName().string() << " took " << stp.read() << "s\n");
@@ -210,7 +213,7 @@ void ParReadCFmesh<READER>::execute()
     CFLog(INFO, " +++ Finished renumbering !\n" );
   }
   
-
+  /// Build Mesh
   // builder of the basic data in MeshData
   // dont forget to release memory in the end
   Common::SelfRegistPtr<MeshDataBuilder> meshDataBuilder =

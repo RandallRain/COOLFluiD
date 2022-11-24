@@ -443,8 +443,8 @@ protected: // member functions
   
  private: // data
   
-  /// map each string with a corresponding pointer to member
-  /// function
+  /// map each string with a corresponding pointer to a reader
+  /// member function
   MapString2Reader m_mapString2Reader;
   
  protected:
