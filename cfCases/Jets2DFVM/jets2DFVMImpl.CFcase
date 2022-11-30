@@ -61,7 +61,7 @@ Simulator.SubSystem.ConvRate            = 1
 Simulator.SubSystem.ShowRate            = 1
 
 Simulator.SubSystem.StopCondition = MaxNumberSteps
-Simulator.SubSystem.MaxNumberSteps.nbSteps = 5
+Simulator.SubSystem.MaxNumberSteps.nbSteps = 2
 
 # Simulator.SubSystem.StopCondition       = Norm
 # Simulator.SubSystem.Norm.valueNorm      = -4.0
@@ -120,9 +120,12 @@ Simulator.SubSystem.CellCenterFVM.InField.Def = if(y>0.5,0.5,1.) \
                                          0.0 \
                                          if(y>0.5,3.425,6.532)
 
+# Commands for computing boundary conditions
 Simulator.SubSystem.CellCenterFVM.BcComds = SuperInletFVMCC SuperOutletFVMCC
+# Boundary condition command name
 Simulator.SubSystem.CellCenterFVM.BcNames = Jet1        Jet2
 
+# Name of the TRSs to which this command applies
 Simulator.SubSystem.CellCenterFVM.Jet1.applyTRS = SuperInlet
 Simulator.SubSystem.CellCenterFVM.Jet1.Vars = x y
 Simulator.SubSystem.CellCenterFVM.Jet1.Def =  if(y>0.5,0.5,1.) \

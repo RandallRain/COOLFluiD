@@ -694,8 +694,8 @@ void StandardSubSystem::run()
   
   CFLog(VERBOSE, "StandardSubSystem::run() => ssGroupName = " << ssGroupName << "\n");
   
-  for ( ; iterate(currSSS); ) {
-    
+  for ( ; iterate(currSSS); ) 
+  {  
     // read the interactive parameters
     runSerial<void, InteractiveParamReader, &InteractiveParamReader::readFile>
       (&*getInteractiveParamReader(), ssGroupName, false);

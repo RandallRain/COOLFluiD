@@ -109,7 +109,7 @@ public:
   }
 
 
-  /// Tells if the state is a ghost one
+  /// Tells if the state is a ghost one (for boundary conditions)
   bool isGhost() const
   {
     return _flags.ghost;

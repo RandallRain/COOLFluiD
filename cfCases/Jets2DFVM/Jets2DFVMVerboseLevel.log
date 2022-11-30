@@ -1,0 +1,1323 @@
+OK
+CFEnv::setup() => start
+CFEnv::setup() => end
+-------------------------------------------------------------
+Creating Simulation Maestro
+-------------------------------------------------------------
+Creating Simulation
+-------------------------------------------------------------
+Configuration of Simulator
+-------------------------------------------------------------
+Working Dir set to: './Jets2DFVM'
+Results Dir set to: './Jets2DFVM/result'
+-------------------------------------------------------------
+-------------------------------------------------------------
+Loading external modules
+LinuxLibtoolLibLoader: Attempting to load ShapeFunctions
+PosixDlopenLibLoader: Loaded libShapeFunctions.so
+LinuxLibtoolLibLoader: Attempting to load PetscI
+PosixDlopenLibLoader: Loaded libPetscI.so
+LinuxLibtoolLibLoader: Attempting to load CFmeshFileWriter
+PosixDlopenLibLoader: Loaded libCFmeshFileWriter.so
+LinuxLibtoolLibLoader: Attempting to load CFmeshFileReader
+PosixDlopenLibLoader: Loaded libCFmeshFileReader.so
+LinuxLibtoolLibLoader: Attempting to load TecplotWriter
+PosixDlopenLibLoader: Loaded libTecplotWriter.so
+LinuxLibtoolLibLoader: Attempting to load NavierStokes
+PosixDlopenLibLoader: Loaded libNavierStokes.so
+LinuxLibtoolLibLoader: Attempting to load FiniteVolume
+PosixDlopenLibLoader: Loaded libFiniteVolume.so
+LinuxLibtoolLibLoader: Attempting to load FiniteVolumeNavierStokes
+PosixDlopenLibLoader: Loaded libFiniteVolumeNavierStokes.so
+LinuxLibtoolLibLoader: Attempting to load BackwardEuler
+PosixDlopenLibLoader: Loaded libBackwardEuler.so
+LinuxLibtoolLibLoader: Attempting to load THOR2CFmesh
+PosixDlopenLibLoader: Loaded libTHOR2CFmesh.so
+Initiating environment of loaded modules
+Initiated PETSc
+-------------------------------------------------------------
+-------------------------------------------------------------
+SMaestro::control() start
+#
+###### STARTING SUBSYSTEM [SubSystem] ######
+#
+-------------------------------------------------------------
+Building SubSystem
+Name : SubSystem
+Type : StandardSubSystem
+-------------------------------------------------------------
+#
+###### CONFIG PHASE #################
+#
+StandardSubSystem::configure() => start
+PEInterface<PM_MPI>::createGroup [SubSystem] => start
+PEInterface<PM_MPI>::createGroup() => inserting ranks 	 0 
+PEInterface<PM_MPI>::createGroup() [SubSystem] => end
+-------------------------------------------------------------
+Setting Namespace : Default
+MeshData          : Default
+PhysicalModelName : Euler2D
+PhysicalModelType : Euler2D
+SubSysStatus      : SubSystemStatus
+-------------------------------------------------------------
+DataBroker: allocating source [0x55a88da0eba8,states,COOLFluiD::Framework::GlobalMpiVector,COOLFluiD::Framework::State*,Default]
+DataBroker: allocating source [0x55a88da0edb8,nodes,COOLFluiD::Framework::GlobalMpiVector,COOLFluiD::Framework::Node*,Default]
+Set PhysicalModel's name to: Euler2D
+Set PhysicalModel's convective name to: Euler2D
+Set PhysicalModel's diffusive name to: Null
+-------------------------------------------------------------
+Creating MeshCreator : CFmeshFileReader
+Method::configure() for [CFmeshFileReader] => start
+Configuring Method [CFmeshFileReader] in the Namespace: [Default]
+Method::configureCommandGroups() for [CFmeshFileReader] => start
+Method: CFmeshFileReader Number of CommandGroups: 0
+Method::configureCommandGroups() for [CFmeshFileReader] => end
+Method::configure() for [CFmeshFileReader] => end
+MethodData::configure() for Data => start
+MethodData::configure() for Data => end
+ParReadCFmesh<READER>::configure() => Renumber : 0
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating MeshAdapterMethod : Null1
+Method::configure() for [Null1] => start
+Configuring Method [Null1] in the Namespace: [Default]
+Method::configureCommandGroups() for [Null1] => start
+Method: Null1 Number of CommandGroups: 0
+Method::configureCommandGroups() for [Null1] => end
+Method::configure() for [Null1] => end
+-------------------------------------------------------------
+StandardSubSystem::configureCouplerMethod() => start
+-------------------------------------------------------------
+Creating CouplerMethod : Null2
+Method::configure() for [Null2] => start
+Configuring Method [Null2] in the Namespace: [Default]
+Method::configureCommandGroups() for [Null2] => start
+Method: Null2 Number of CommandGroups: 0
+Method::configureCommandGroups() for [Null2] => end
+Method::configure() for [Null2] => end
+-------------------------------------------------------------
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+StandardSubSystem::configureCouplerMethod() => end
+-------------------------------------------------------------
+Creating SpaceMethod : CellCenterFVM
+CellCenterFVM::configure()
+Method::configure() for [CellCenterFVM] => start
+Configuring Method [CellCenterFVM] in the Namespace: [Default]
+Method::configureCommandGroups() for [CellCenterFVM] => start
+Method: CellCenterFVM Number of CommandGroups: 0
+Method::configureCommandGroups() for [CellCenterFVM] => end
+Method::configure() for [CellCenterFVM] => end
+CellCenterFVM::configureNested()
+CellCenterFVMData::configure() => before SpaceMethodData::configure()
+SpaceMethodData::configure() => before MethodData::configure()
+MethodData::configure() for Data => start
+MethodData::configure() for Data => end
+SpaceMethodData::configure() => after MethodData::configure()
+SpaceMethodData::configure() => Configuring Update VarSet
+SpaceMethodData::configure() => VarSet is : Euler2DCons
+Data::configure() => Provider Euler2DCons exists
+SpaceMethodData::configure() => before setting update VarSet ptr
+Data::configure() => Provider Euler2DCons exists
+SpaceMethodData::configure() => before setting solution VarSet ptr
+Data::configure() => Provider Null exists
+SpaceMethodData::configure() => before setting diffusive VarSet ptr
+CellCenterFVMData::configure() => after SpaceMethodData::configure()
+CellCenterFVM: configureGeoDataComputer()
+CellCenterFVM: configureFluxSplitter()
+RoeFlux::configure() => DiffCoeff = 1 
+CellCenterFVM: configureDiffusiveFluxComputer()
+CellCenterFVM: configureVarSetTransformers()
+Configuring VarSet Transformer: Identity
+Configuring VarSet Transformer: Identity
+Configuring VarSet Transformer: Identity
+Configuring VarSet Transformer: Euler2DConsToRoe
+Configuring VarSet Transformer: Identity
+Configuring VarSet Transformer: Identity
+CellCenterFVM: configureJacobianLinearizer()
+CellCenterFVMData::configureJacobianLinearizer() => linearizerName = Euler2DLinearRoe
+CellCenterFVM: configurePolyReconstructor()
+CellCenterFVM: configureLimiter()
+CellCenterFVM: configureNodalStatesExtrapolator()
+CellCenterFVM: configureEquationFilters()
+CellCenterFVM: configureSourceTermComputer()
+CellCenterFVM: Using GeoDataComputer: FVMCC
+CellCenterFVM: Using FluxSplitter: Roe
+CellCenterFVM: Using Update VarSet: Cons
+CellCenterFVM: Using Solution VarSet: Cons
+CellCenterFVM: Using Diffusive VarSet: Null
+CellCenterFVM: Using Linear VarSet: Roe
+CellCenterFVM: Using NodalStatesExtrapolator: DistanceBased
+SETUP type = LeastSquareP1Setup
+SETUP name = Setup1
+SETUP type = LeastSquareP1UnSetup
+SETUP name = UnSetup1
+PREPROCESS type = Null
+PREPROCESS name = PreProcess1
+CellCenterFVM: Using ComputeRHS: NumJacob
+INIT type = InitState
+INIT name = InField
+InitState::configure() => provider for _inputToUpdateVar is Identity
+BC type = SuperInletFVMCC
+BC name = Jet1
+BC type = SuperOutletFVMCC
+BC name = Jet2
+-------------------------------------------------------------
+FVMCCGeoDataComputer<METHODDATA>::needsSockets()
+DataBroker: allocating source [0x55a88da436f8,normals,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da43900,faceAreas,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da43b08,faceCenters,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da43d10,isOutward,COOLFluiD::Framework::LocalGrowArray,int,Default]
+DataBroker: allocating source [0x55a88da44120,gstates,COOLFluiD::Framework::LocalGrowArray,COOLFluiD::Framework::State*,Default]
+DataBroker: allocating source [0x55a88da44328,volumes,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da44530,limiter,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da44738,nstates,COOLFluiD::Framework::LocalGrowArray,COOLFluiD::MathTools::CFVec<double, 0>,Default]
+DataBroker: allocating source [0x55a88da44940,nstatesProxy,COOLFluiD::Framework::LocalGrowArray,COOLFluiD::Framework::ProxyDofIterator<COOLFluiD::MathTools::CFVec<double, 0> >*,Default]
+DataBroker: allocating source [0x55a88da44b48,trsID,COOLFluiD::Framework::LocalGrowArray,int,Default]
+DataBroker: allocating source [0x55a88da44d50,rankPartitionFaces,COOLFluiD::Framework::LocalGrowArray,unsigned int,Default]
+DataBroker: allocating source [0x55a88da43f18,cellFlag,COOLFluiD::Framework::LocalGrowArray,bool,Default]
+DataBroker: allocating source [0x55a88da453a0,activeDiffusion,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da45688,stencil,COOLFluiD::Framework::LocalGrowArray,std::__debug::vector<COOLFluiD::Framework::State*, std::allocator<COOLFluiD::Framework::State*> >,Default]
+DataBroker: allocating source [0x55a88da45890,weights,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da45a98,uX,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da45ca0,uY,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da45ea8,uZ,COOLFluiD::Framework::LocalGrowArray,double,Default]
+-------------------------------------------------------------
+Creating ErrorEstimatorMethod : Null4
+Method::configure() for [Null4] => start
+Configuring Method [Null4] in the Namespace: [Default]
+Method::configureCommandGroups() for [Null4] => start
+Method: Null4 Number of CommandGroups: 0
+Method::configureCommandGroups() for [Null4] => end
+Method::configure() for [Null4] => end
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating LinearSystemSolver : BwdEulerLSS
+Method::configure() for [BwdEulerLSS] => start
+Configuring Method [BwdEulerLSS] in the Namespace: [Default]
+Method::configureCommandGroups() for [BwdEulerLSS] => start
+Method: BwdEulerLSS Number of CommandGroups: 0
+Method::configureCommandGroups() for [BwdEulerLSS] => end
+Method::configure() for [BwdEulerLSS] => end
+MethodData::configure() for Data => start
+MethodData::configure() for Data => end
+Petsc PCType = PCASM
+Petsc KSPType = KSPGMRES
+Petsc Nb KSP spaces = 30
+Petsc MatOrderingType = MATORDERING_RCM
+Petsc MaxIter = 50
+Petsc Relative Tolerance = 1e-05
+Petsc Absolute Tolerance = 1e-30
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating ConvergenceMethod : BwdEuler
+Method::configure() for [BwdEuler] => start
+Configuring Method [BwdEuler] in the Namespace: [Default]
+Method::configureCommandGroups() for [BwdEuler] => start
+Method: BwdEuler Number of CommandGroups: 0
+Method::configureCommandGroups() for [BwdEuler] => end
+Method::configure() for [BwdEuler] => end
+MethodData::configure() for Data => start
+MethodData::configure() for Data => end
+-------------------------------------------------------------
+DataBroker: allocating source [0x55a88da78208,rhs,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da78410,updateCoeff,COOLFluiD::Framework::LocalGrowArray,double,Default]
+DataBroker: allocating source [0x55a88da78618,bStatesNeighbors,COOLFluiD::Framework::LocalGrowArray,std::valarray<COOLFluiD::Framework::State*>,Default]
+-------------------------------------------------------------
+Creating DataProcessing : Null7
+Method::configure() for [Null7] => start
+Configuring Method [Null7] in the Namespace: [Default]
+Method::configureCommandGroups() for [Null7] => start
+Method: Null7 Number of CommandGroups: 0
+Method::configureCommandGroups() for [Null7] => end
+Method::configure() for [Null7] => end
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating DataProcessing : Null8
+Method::configure() for [Null8] => start
+Configuring Method [Null8] in the Namespace: [Default]
+Method::configureCommandGroups() for [Null8] => start
+Method: Null8 Number of CommandGroups: 0
+Method::configureCommandGroups() for [Null8] => end
+Method::configure() for [Null8] => end
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating OutputFormatter : Tecplot
+Method::configure() for [Tecplot] => start
+Configuring Method [Tecplot] in the Namespace: [Default]
+Method::configureCommandGroups() for [Tecplot] => start
+Method: Tecplot Number of CommandGroups: 0
+Method::configureCommandGroups() for [Tecplot] => end
+Method::configure() for [Tecplot] => end
+MethodData::configure() for Data => start
+MethodData::configure() for Data => end
+TecWriterData::outputVarStr = Euler2DCons
+-------------------------------------------------------------
+-------------------------------------------------------------
+Creating OutputFormatter : CFmesh
+Method::configure() for [CFmesh] => start
+Configuring Method [CFmesh] in the Namespace: [Default]
+Method::configureCommandGroups() for [CFmesh] => start
+Method: CFmesh Number of CommandGroups: 0
+Method::configureCommandGroups() for [CFmesh] => end
+Method::configure() for [CFmesh] => end
+MethodData::configure() for Data => start
+MethodData::configure() for Data => end
+-------------------------------------------------------------
+Setting collaborators for all Methods 
+Setting ConvergenceMethod collaborators for MeshAdapterMethods 
+Setting OutputFormatter collaborators for MeshAdapterMethods 
+Setting MeshCreator collaborators for MeshAdapterMethods 
+Setting SpaceMethod collaborators for MeshAdapterMethods 
+Setting LinearSystemSolver collaborators for ConvergenceMethods 
+Setting SpaceMethod collaborators for ConvergenceMethods 
+Setting LinearSystemSolver collaborators for SpaceMethods 
+Setting ConvergenceMethods collaborators for SpaceMethods 
+Setting ConvergenceMethods collaborators for DataProcessingMethod (PRE) 
+Setting ConvergenceMethods collaborators for DataProcessingMethod (POST) 
+Setting LinearSystemSolver collaborators for DataProcessingMethod (PRE) 
+Setting LinearSystemSolver collaborators for DataProcessingMethod (POST) 
+FVMCCGeoDataComputer<METHODDATA>::needsSockets()
+StandardSubSystem::setNonRootMethods() => start
+StandardSubSystem::setNonRootMethods() => end
+StandardSubSystem::configure() => end
+WARNING : Unused User Configuration Arguments:
+Simulator.SubSystem.BwdEuler.Data.Norm L2
+Simulator.SubSystem.CFmeshFileReader.ParReadCFmesh.ParCFmeshFileReader.NbOverlapLayers 4
+Simulator.SubSystem.CFmeshFileReader.THOR2CFmesh.Discontinuous true
+Simulator.SubSystem.CFmeshFileReader.THOR2CFmesh.SolutionOrder P0
+Simulator.SubSystem.ConvRate 1
+Simulator.SubSystem.ConvergenceFile convergence.plt
+Simulator.SubSystem.ShowRate 1
+Simulator.SubSystem.Tecplot.Data.updateVar Cons
+
+#
+###### SOCKETS PLUG PHASE ###########
+#
+StandardSubSystem::allocateAllSockets() => start
+FVMCCGeoDataComputer<METHODDATA>::needsSockets()
+StandardSubSystem::allocateAllSockets() => end
+#
+###### BUILD PHASE ##################
+#
+StandardSubSystem::buildPhysicalModel() => start
+-------------------------------------------------------------
+Setting up all PhysicalModel's
+
+-------------------------------------------------------------
+Before setting  model [Euler2D] in nsp [Default]
+-------------------------------------------------------------
+Setting up Physical Model [Euler2D]
+EulerPhysicalModel::setReferenceValues() => Mach infinity NOT set
+EulerPhysicalModel::setReferenceValues() => Equations will be solved dimensionally
+tempRef = 0
+pRef   = 0
+machInf   = 0
+rhoRef  = 1
+-------------------------------------------------------------
+After setting  model [Euler2D] in nsp [Default]
+StandardSubSystem::buildPhysicalModel() => end
+StandardSubSystem::buildMeshData() => start
+-------------------------------------------------------------
+Setting up all MeshCreator's
+-------------------------------------------------------------
+Method::setMethod() for [CFmeshFileReader] => start
+MethodData::setup() for Data => start
+MethodData::setup() for Data => end
+Method::setupCommandsAndStrategies() for [CFmeshFileReader] => start
+NumericalCommand name : StdSetup START
+NumericalCommand name : StdSetup END
+NumericalCommand name : StdUnSetup START
+NumericalCommand name : StdUnSetup END
+NumericalCommand name : ParReadCFmesh START
+NumericalCommand name : ParReadCFmesh END
+Method::setupCommandsAndStrategies() for [CFmeshFileReader] => end
+Method::setMethod() for [CFmeshFileReader] => end
+-------------------------------------------------------------
+Building MeshData's
+-------------------------------------------------------------
+-------------------------------------------------------------
+MeshCreator [CFmeshFileReader] Generate or Read Mesh
+
+Memory usage before building mesh: 10.1797 MB
+
+CFmeshReader::generateMeshDataImpl() => start
+CFmeshReader::convertFormat() => start
+CFmeshReader::convertFormat() => 2
+CFmeshReader::convertFormat() => 3
+DirectFileAccess::Opening file ./Jets2DFVM/jets2DFVM.thor
+DirectFileAccess::Opening file ./Jets2DFVM/jets2DFVM.thor
+DirectFileAccess::Opening file ./Jets2DFVM/jets2DFVM.SP
+Reading THOR2CFmesh took: 0.006108s
+Opening file ./Jets2DFVM/jets2DFVM.CFmesh
+THOR2CFmeshConverter::writeDiscontinuousElements() => start
+THOR2CFmeshConverter::writeDiscontinuousElements() => end
+Conversion THOR2CFmesh took: 0.005355s
+CFmeshReader::convertFormat() => end
+CFmeshReader : finished converting
+CFmeshReader::generateMeshDataImpl() => 2
+FileReader::readFromFile() => start
+DirectFileAccess::Opening file ./Jets2DFVM/jets2DFVM.CFmesh
+Original NbEquations = 4
+Final NbEquations    = 4
+Memory Usage before assembling connectivity: 10.5234 MB
+ParCFmeshFileReader::moveElementData() => start memory usage: 10.5234 MB
+ParCFmeshFileReader::moveElementData() 2 => Memory usage: 10.5234 MB
+ParCFmeshFileReader::moveElementData() 3 => Memory usage: 10.707 MB
+ParCFmeshFileReader::moveElementData() 4 => Memory usage: 10.8984 MB
+ParCFmeshFileReader::moveElementData() 5 => Memory usage: 10.8984 MB
+ParCFmeshFileReader::moveElementData() 6 => Memory usage: 10.8984 MB
+ParCFmeshFileReader::moveElementData() 7 => Memory usage: 10.8984 MB
+ParCFmeshFileReader::moveElementData() 9 => Memory usage: 10.8984 MB
+ParCFmeshFileReader::moveElementData() 10 => Memory usage: 10.8984 MB
+ParCFmeshFileReader::moveElementData() 11 => Memory usage: 10.8984 MB
+ParCFmeshFileReader::buildOverlapLayers() => start
+ParCFmeshFileReader::buildOverlapLayers()
+ParCFmeshFileReader::buildOverlapLayers() => root [0]
+ParCFmeshFileReader::buildOverlapLayers() => end
+ParCFmeshFileReader::moveElementData() 12 => Memory usage: 11.1172 MB
+ParCFmeshFileReader::moveElementData() => end memory usage: 11.1172 MB
+FileReader::readFromFile() => 2
+FileReader::readFromFile() => 3
+FileReader::readFromFile() => 4
+FileReader::readFromFile() => 5
+FileReader::readFromFile() => 6
+FileReader::readFromFile() => end
+Reading data from jets2DFVM.CFmesh took 0.812443s
+Memory Usage after mesh reading: 11.375 MB
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 1
+Building TRS: InnerCells
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 2
+FVMCC_MeshDataBuilder::renumberCells() => START
+nbCells = 3178, nbStates = 3178
+FVMCC_MeshDataBuilder::renumberCells() => END
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 3
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 4
+FVMCC BoundaryFaces [160]
+FVMCC Max Total NbFaces [9534]
+FVMCC Total nb faces [4847]
+FVMCC Inner nb faces [4687]
+FVMCC Boundary and Partition faces [160]
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 5
+Building TRS: InnerFaces
+FVM Faces created : 4847
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 6
+TopologicalRegion [0] : GeoEnts [0] 
+TopologicalRegion [1] : GeoEnts [40] 
+TopologicalRegion [2] : GeoEnts [80] 
+Building TRS: SuperOutlet
+Built TRS named SuperOutlet
+TopologicalRegion [0] : GeoEnts [0] 
+Building TRS: SuperInlet
+Built TRS named SuperInlet
+Number of partition faces detected = 0
+Building TRS: PartitionFaces
+Built PartitionFaces TRS 
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 7
+FVMCC_MeshDataBuilder::createTopologicalRegionSets() => 8
+Memory Usage after TRS: 11.7891 MB
+Building MeshData from ./Jets2DFVM/jets2DFVM.CFmesh took 0.998017s
+Building the mesh took: 1.00075s
+CFmeshReader::generateMeshDataImpl() => end
+
+Memory usage after building mesh: 11.7891 MB
+-------------------------------------------------------------
+-------------------------------------------------------------
+MeshCreator [CFmeshFileReader] Building Mesh Data
+-------------------------------------------------------------
+Building TRS info for MeshData in Namespace Default
+MultiMethodTuple::apply() => rank [0], group [Default], method [CFmeshFileReader]
+Method::unsetMethod() for [CFmeshFileReader] => start
+Method::unsetupCommandsAndStrategies() for [CFmeshFileReader] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for [CFmeshFileReader] => end
+MethodData::unsetup() for Data => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+MethodData::unsetup() for Data => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [CFmeshFileReader] => end
+StandardSubSystem::buildMeshData() => end
+#
+###### SETUP PHASE ##################
+#
+Method::setCommandGroups() for [CFmeshFileReader] => start
+Method::setCommandGroups() for [CFmeshFileReader] => end
+Method::setCommandGroups() for [Null2] => start
+Method::setCommandGroups() for [Null2] => end
+Method::setCommandGroups() for [Null1] => start
+Method::setCommandGroups() for [Null1] => end
+Method::setCommandGroups() for [Null4] => start
+Method::setCommandGroups() for [Null4] => end
+Method::setCommandGroups() for [BwdEulerLSS] => start
+Method::setCommandGroups() for [BwdEulerLSS] => end
+Method::setCommandGroups() for [BwdEuler] => start
+Method::setCommandGroups() for [BwdEuler] => end
+Method::setCommandGroups() for [CellCenterFVM] => start
+Method::setCommandGroups() for [CellCenterFVM] => end
+Method::setCommandGroups() for [Null7] => start
+Method::setCommandGroups() for [Null7] => end
+Method::setCommandGroups() for [Null8] => start
+Method::setCommandGroups() for [Null8] => end
+Method::setCommandGroups() for [Tecplot] => start
+Method::setCommandGroups() for [Tecplot] => end
+Method::setCommandGroups() for [CFmesh] => start
+Method::setCommandGroups() for [CFmesh] => end
+-------------------------------------------------------------
+Setting up DataPreProcessing's
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null7]
+Method::setMethod() for [Null7] => start
+Method::setMethod() for [Null7] => end
+-------------------------------------------------------------
+Setting up MeshAdapterMethod's
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null1]
+Method::setMethod() for [Null1] => start
+Method::setMethod() for [Null1] => end
+-------------------------------------------------------------
+Setting up ConvergenceMethod's
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEuler]
+Method::setMethod() for [BwdEuler] => start
+MethodData::setup() for Data => start
+MethodData::setup() for Data => end
+ConvergenceMethod::setMethodImpl() => start
+Opening file ./Jets2DFVM/result/convergence.plt.Default
+ConvergenceMethod::setMethodImpl() => end
+Method::setupCommandsAndStrategies() for [BwdEuler] => start
+NumericalCommand name : StdSetup START
+NumericalCommand name : StdSetup END
+NumericalCommand name : StdUnSetup START
+NumericalCommand name : StdUnSetup END
+NumericalCommand name : UpdateSol START
+NumericalCommand name : UpdateSol END
+Strategy name : L2 START
+Strategy name : L2 END
+Strategy name : Identity START
+Strategy name : Identity END
+Strategy name : Identity START
+Strategy name : Identity END
+Method::setupCommandsAndStrategies() for [BwdEuler] => end
+Method::setMethod() for [BwdEuler] => end
+-------------------------------------------------------------
+Setting up LinearSystemSolver's
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEulerLSS]
+Method::setMethod() for [BwdEulerLSS] => start
+MethodData::setup() for Data => start
+MethodData::setup() for Data => end
+StdSeqSetup::setMatrix() => useNodeBased[0], nbEqs[4]
+Method::setMethod() for [BwdEulerLSS] => end
+-------------------------------------------------------------
+Setting up SpaceMethod's
+MultiMethodTuple::apply() => rank [0], group [Default], method [CellCenterFVM]
+Method::setMethod() for [CellCenterFVM] => start
+CellCenterFVMData::setup() => start
+MethodData::setup() for Data => start
+MethodData::setup() for Data => end
+Integrator<INTEGRATORIMPL>::setup() => start()
+Integrator<INTEGRATORIMPL>::setup() => 1
+Integrator<INTEGRATORIMPL>::setup() => 2
+Integrator<INTEGRATORIMPL>::setup() => 3
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 3
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 3
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 3
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+Integrator<INTEGRATORIMPL>::setup() => 4
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+Activating Integrator [VolumeGaussLegendre1LagrangeTriagP0] [Triag] [VOLUME] [P1] [GaussLegendre] [Lagrange] [P1] 
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Triag
+Activating Integrator [VolumeGaussLegendre1LagrangeTriagP1] [Triag] [VOLUME] [P1] [GaussLegendre] [Lagrange] [P1] 
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+Activating Integrator [VolumeGaussLegendre1LagrangeLineP0] [Line] [VOLUME] [P1] [GaussLegendre] [Lagrange] [P1] 
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+prop.QuadType  = GaussLegendre
+m_integType[shape].first  = GaussLegendre
+m_integType[shape].second  = P1
+shape  = Line
+Activating Integrator [VolumeGaussLegendre1LagrangeLineP1] [Line] [VOLUME] [P1] [GaussLegendre] [Lagrange] [P1] 
+CellCenterFVMData::setup() => end
+CellCenterFVM::setMethodImpl() => before SpaceMethod::setMethodImpl()
+CellCenterFVM::setMethodImpl() => after SpaceMethod::setMethodImpl()
+FVMCC_ComputeRHS::setBCList() => nbBCs = 2, nbTRSs = 5
+FVMCC_ComputeRHS::setBCList() => InnerCells == SuperInlet?
+FVMCC_ComputeRHS::setBCList() => InnerFaces == SuperInlet?
+FVMCC_ComputeRHS::setBCList() => PartitionFaces == SuperInlet?
+FVMCC_ComputeRHS::setBCList() => SuperInlet == SuperInlet?
+found iTRS = 3 == 0x55a88da5c1b0
+FVMCC_ComputeRHS::setBCList() => InnerCells == SuperOutlet?
+FVMCC_ComputeRHS::setBCList() => InnerFaces == SuperOutlet?
+FVMCC_ComputeRHS::setBCList() => PartitionFaces == SuperOutlet?
+FVMCC_ComputeRHS::setBCList() => SuperInlet == SuperOutlet?
+FVMCC_ComputeRHS::setBCList() => SuperOutlet == SuperOutlet?
+found iTRS = 4 == 0x55a88da630a0
+CellCenterFVM::setMethodImpl() => start setting up Setup1 
+StdSetup::execute() => start
+BaseSetupFVMCC<BASE>::execute() => start
+BaseSetupFVMCC<BASE>::allocateArrays() => start
+BaseSetupFVMCC::allocateArrays() => end
+FVMCCGeoDataComputer<METHODDATA>::compute()
+ComputeDummyStates::operator() => START
+ComputeDummyStates::operator() => END
+FVMCCGeoDataComputer::computeCellVolumes() => START
+FVMCCGeoDataComputer::computeCellVolumes() = > [0] negative volumes detected
+FVMCCGeoDataComputer::computeCellVolumes() => END
+FVMCCGeoDataComputer::computeFaceCenters() => START
+FVMCCGeoDataComputer::computeFaceCenters() => END
+BaseSetupFVMCC::storeBoundaryNormals() => start
+BaseSetupFVMCC::storeBoundaryNormals() => TRS name = SuperInlet
+BaseSetupFVMCC::storeBoundaryNormals() => TRS name = SuperOutlet
+BaseSetupFVMCC::storeBoundaryNormals() => end
+BaseSetupFVMCC::execute() => end
+StdSetup::execute() => end
+LeasSquareP1 : Detected 19033 edges
+LeastSquareP1Setup::execute() => (ux.size(), nbEqs, nbState) = (12712, 4, 3178)
+_limiterSocketName Null
+CellCenterFVM::setMethodImpl() => end setting up Setup1 
+CellCenterFVM::setMethodImpl() => before setupCommandsAndStrategies()
+Method::setupCommandsAndStrategies() for [CellCenterFVM] => start
+NumericalCommand name : Setup1 START
+NumericalCommand name : Setup1 END
+NumericalCommand name : UnSetup1 START
+NumericalCommand name : UnSetup1 END
+NumericalCommand name : PreProcess1 START
+NumericalCommand name : PreProcess1 END
+NumericalCommand name : StdSetNodalStates START
+NumericalCommand name : StdSetNodalStates END
+NumericalCommand name : NumJacob START
+FVMCC_ComputeRHS::setup() START
+EquationSetData::setup() => (0, 0, 4
+EquationSetData::setup() => (0, 0, 4
+FVMCC_ComputeRHS::setup() END
+NumericalCommand name : NumJacob END
+NumericalCommand name : StdTimeRhs START
+FVMCC_StdComputeTimeRhs::setup() => defualt values for _zeroDiagValue
+NumericalCommand name : StdTimeRhs END
+NumericalCommand name : Null START
+NumericalCommand name : Null END
+NumericalCommand name : Null START
+NumericalCommand name : Null END
+NumericalCommand name : Null START
+NumericalCommand name : Null END
+NumericalCommand name : Null START
+NumericalCommand name : Null END
+NumericalCommand name : InField START
+NumericalCommand name : InField END
+NumericalCommand name : Jet1 START
+NullStateInterpolator::setup()
+TRS Jet1 has zero gradient flags = 0 0 0 0 
+NumericalCommand name : Jet1 END
+NumericalCommand name : Jet2 START
+NullStateInterpolator::setup()
+TRS Jet2 has zero gradient flags = 0 0 0 0 
+NumericalCommand name : Jet2 END
+Strategy name : LinearLS2D START
+Strategy name : LinearLS2D END
+Strategy name : Venktn2D START
+WARNING: Venktn2D::configure() => using default reference length
+WARNING: Venktn2D::configure() => using default reference state values
+Strategy name : Venktn2D END
+Strategy name : DistanceBased START
+Memory Usage before weights: 15.7656 MB
+Memory Usage after weights: 15.7656 MB
+Strategy name : DistanceBased END
+Strategy name : Roe START
+Strategy name : Roe END
+Strategy name : FVMCC START
+FVMCCGeoDataComputer<METHODDATA>::setup()
+Strategy name : FVMCC END
+Strategy name : Null START
+Strategy name : Null END
+Strategy name : Null START
+Strategy name : Null END
+Strategy name : Null START
+Strategy name : Null END
+Strategy name : Null START
+NullEquationFilter::setup() called!
+Strategy name : Null END
+Method::setupCommandsAndStrategies() for [CellCenterFVM] => end
+CellCenterFVM::setMethodImpl() => after setupCommandsAndStrategies()
+Method::setMethod() for [CellCenterFVM] => end
+-------------------------------------------------------------
+Setting up ErrorEstimatorMethod's
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null4]
+Method::setMethod() for [Null4] => start
+Method::setMethod() for [Null4] => end
+-------------------------------------------------------------
+Setting up DataPostProcessing's
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null8]
+Method::setMethod() for [Null8] => start
+Method::setMethod() for [Null8] => end
+-------------------------------------------------------------
+Setting up CouplerMethod's
+-------------------------------------------------------------
+CouplerMethod's setup
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+Method::setMethod() for [Null2] => start
+Method::setMethod() for [Null2] => end
+-------------------------------------------------------------
+CouplerMethod's write interface coordinates
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+-------------------------------------------------------------
+Writing coordinates of CouplerMethod [Null2]
+-------------------------------------------------------------
+-------------------------------------------------------------
+CouplerMethod's read interface coordinates
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+-------------------------------------------------------------
+Reading coordinates of CouplerMethod [Null2]
+-------------------------------------------------------------
+-------------------------------------------------------------
+CouplerMethod's match mesh and write
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+-------------------------------------------------------------
+Mesh matching of CouplerMethod [Null2]
+-------------------------------------------------------------
+-------------------------------------------------------------
+CouplerMethod's read match mesh
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+-------------------------------------------------------------
+Reading matched mesh of CouplerMethod [Null2]
+-------------------------------------------------------------
+-------------------------------------------------------------
+Setting up OutputFormatter's
+MultiMethodTuple::apply() => rank [0], group [Default], method [Tecplot]
+Method::setMethod() for [Tecplot] => start
+MethodData::setup() for Data => start
+MethodData::setup() for Data => end
+EquationSetData::setup() => (0, 0, 4
+Method::setupCommandsAndStrategies() for [Tecplot] => start
+NumericalCommand name : StdSetup START
+NumericalCommand name : StdSetup END
+NumericalCommand name : StdUnSetup START
+NumericalCommand name : StdUnSetup END
+NumericalCommand name : ParWriteSolution START
+ParWriteSolution::setup() => start
+ParFileWriter::setWriterGroup() => start
+ParFileWriter::setDefaultWriters() => _nbWriters = 1
+PEInterface<PM_MPI>::createGroup [Default_Writers] => start
+PEInterface<PM_MPI>::createGroup() => inserting ranks 	 0 
+PEInterface<PM_MPI>::createGroup() [Default_Writers] => end
+ParFileWriter::setWriterGroup() => P0 =>  writerRanks  =  0
+
+
+ParFileWriter::setWriterGroup() => end
+ParWriteSolution::setup() => end
+NumericalCommand name : ParWriteSolution END
+Strategy name : DataHandleOutput START
+Strategy name : DataHandleOutput END
+Method::setupCommandsAndStrategies() for [Tecplot] => end
+Method::setMethod() for [Tecplot] => end
+MultiMethodTuple::apply() => rank [0], group [Default], method [CFmesh]
+Method::setMethod() for [CFmesh] => start
+MethodData::setup() for Data => start
+MethodData::setup() for Data => end
+Method::setupCommandsAndStrategies() for [CFmesh] => start
+NumericalCommand name : StdSetup START
+NumericalCommand name : StdSetup END
+NumericalCommand name : StdUnSetup START
+NumericalCommand name : StdUnSetup END
+NumericalCommand name : ParWriteSolution START
+NumericalCommand name : ParWriteSolution END
+Strategy name : DataHandleOutput START
+Strategy name : DataHandleOutput END
+Method::setupCommandsAndStrategies() for [CFmesh] => end
+Method::setMethod() for [CFmesh] => end
+SubSystemStatus::setCurrentTimeDim(): [refTime, currTime] = [1, 0]
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null7]
+DataProcessingMethod::processData() for [Null7]
+
+-------------------------------------------------------------
+Initializing solution
+MultiMethodTuple::apply() => rank [0], group [Default], method [CellCenterFVM]
+-------------------------------------------------------------
+Initializing solution of method [CellCenterFVM]
+Initializing InFieldSTART
+InitState::executeOnTrs() => START
+InitState::executeOnTrs() => END
+Initializing InFieldEND
+Applying BC Jet1 => START
+FVMCC_BaseBC::execute() called for TRS: SuperInlet
+Applying BC Jet1 => END
+Applying BC Jet2 => START
+FVMCC_BaseBC::execute() called for TRS: SuperOutlet
+Applying BC Jet2 => END
+-------------------------------------------------------------
+StandardSubSystem::setup() => m_dataPostProcessing.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null8]
+DataProcessingMethod::processData() for [Null8]
+Writing initial solution ... 
+StandardSubSystem::writeSolution() => output from [Tecplot] START
+ParWriteSolution::execute() => start
+ParWriteSolution::hasChangedMesh (iType = 0) => true
+ParWriteSolution::hasChangedMesh() => true
+ParWriteSolution::buildNodeIDMapping() => start
+ParWriteSolution::buildNodeIDMapping() => integer format size = 5
+ParWriteSolution::buildNodeIDMapping() for InnerCells 
+ParWriteSolution::storeMappings() => start
+ParWriteSolution::storeMappings() => end
+ParWriteSolution::buildNodeIDMapping() => end
+ParWriteSolution::writeData() [Unstructured grid data] => start
+Opening file ./Jets2DFVM/result/jets2DFVM_out.plt
+ParWriteSolution::writeInnerData() [Unstructured grid data] => start
+Writing solution to ./Jets2DFVM/result/jets2DFVM_out.plt
+ParWriteSolution::writeHeader() "Unstructured grid data" start
+ParWriteSolutionBlock::writeHeader() "Unstructured grid data" end
+ParWriteSolution::hasChangedMesh (iType = 0) => true
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+ParWriteSolution::writeNodeList() => start
+ParWriteSolution::writeNodeList() => offsets = [181, 220621]
+[0] => wOffset = 181, sendSize = 10020
+wSendSize = 10020, nodesStride = 6
+ParWriteSolution::writeNodeList() => end
+ParWriteSolution::writeElementList() => start
+ParWriteSolution::writeElementList() => offsets = [220621, 277825]
+P[0] has maxElemSendSize = 9534
+ParCFmeshBinaryFileWriter::writeElementList() => P[0] => offset = 220621
+ParWriteSolution::writeElementList() => end
+ParWriteSolution::writeInnerData() [Unstructured grid data] => end
+ParWriteSolution::writeData() [Unstructured grid data] => end
+ParWriteSolution::execute() => end
+StandardSubSystem::writeSolution() => output from [Tecplot] END
+Writing took 0.468035s
+StandardSubSystem::writeSolution() => output from [CFmesh] START
+ParCFmeshFileWriter::writeToFile() => IO rank is 0
+Opening file ./Jets2DFVM/result/jets2DFVM_out.CFmesh
+Element written 
+Nodes written 
+States written 
+Writing solution to: ./Jets2DFVM/result/jets2DFVM_out.CFmesh
+StandardSubSystem::writeSolution() => output from [CFmesh] END
+Writing took 0.061739s
+-------------------------------------------------------------
+#
+###### RUN PHASE ####################
+#
+StandardSubSystem::run() => start
+SubSystemStatus::setCurrentTimeDim(): [refTime, currTime] = [1, 0]
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+StandardSubSystem::run() => ssGroupName = SubSystem
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+StandardSubSystem::run() => m_dataPreProcessing.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null7]
+DataProcessingMethod::processData() for [Null7]
+StandardSubSystem::run() => m_couplerMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+StandardSubSystem::run() => m_meshAdapterMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null1]
+StandardSubSystem::run() => m_convergenceMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEuler]
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+ExprComputeCFL::operator() => _eval = 1 0 0 0 0 1 0 , CFLnumber = 30
+CellCenterFVM::preProcessSolutionImpl() => START
+CellCenterFVM::computeSpaceResidualImpl() => pre-processing startPreProcess1 
+CellCenterFVM::computeSpaceResidualImpl() => pre-processing endPreProcess1 
+CellCenterFVM::preProcessSolutionImpl() => END
+Applying BC Jet1 => START
+FVMCC_BaseBC::execute() called for TRS: SuperInlet
+Applying BC Jet1 => END
+Applying BC Jet2 => START
+FVMCC_BaseBC::execute() called for TRS: SuperOutlet
+Applying BC Jet2 => END
+FVMCC_ComputeRHS::execute() START
+LeastSquareP1PolyRec2D::computeGradients() => START
+LeastSquareP1PolyRec2D::computeGradients() => END
+TRS name = InnerCells
+TRS name = InnerFaces
+TRS name = PartitionFaces
+TRS name = SuperInlet
+BC name = Jet1
+TRS name = SuperOutlet
+BC name = Jet2
+FVMCC_ComputeRHS::execute() END
+BwdEuler : assembled linear system in 0.592627s
+StdParSolveSys::execute() => reusePC [0]
+KSP convergence reached at iteration: 25
+StdParSolveSys::execute() took 0.026452s
+PetscLSS::solveSys() WallTime: 0.026529s
+BwdEuler : solved linear system in 0.026744s
+ComputeL2Norm::GR_GetLocalValue() => m_vecnorm_name = rhs
+ComputeL2Norm::GR_GetLocalValue() => nbEqs = 4
+ComputeL2Norm::GR_GetLocalValue() => vecnorm.size() = 12712
+ComputeL2Norm::GR_GetLocalValue() => m_vecnorm_name = rhs
+ComputeL2Norm::GR_GetLocalValue() => nbEqs = 4
+ComputeL2Norm::GR_GetLocalValue() => vecnorm.size() = 12712
+ComputeL2Norm::GR_GetLocalValue() => m_vecnorm_name = rhs
+ComputeL2Norm::GR_GetLocalValue() => nbEqs = 4
+ComputeL2Norm::GR_GetLocalValue() => vecnorm.size() = 12712
+Opening file ./Jets2DFVM/result/convergence.plt.Default
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+StandardSubSystem::run() => m_errorEstimatorMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null4]
+StandardSubSystem::run() => m_dataPostProcessing.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null8]
+DataProcessingMethod::processData() for [Null8]
+StandardSubSystem::run() => m_couplerMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+StandardSubSystem::run() => m_meshAdapterMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null1]
+StandardSubSystem::run() => writeConvergenceOnScreen()
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEuler]
+Iter: 1       Res: [    0.63171165 0.70651055 1.4691263 ]  CFL: 30       CPUTime: 0.595241 Mem: 23.9023 MB
+
+StandardSubSystem::run() => writeSolution()
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+StandardSubSystem::run() => m_dataPreProcessing.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null7]
+DataProcessingMethod::processData() for [Null7]
+StandardSubSystem::run() => m_couplerMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+StandardSubSystem::run() => m_meshAdapterMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null1]
+StandardSubSystem::run() => m_convergenceMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEuler]
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+ExprComputeCFL::operator() => _eval = 2 0.631712 0 0 0 30 0 , CFLnumber = 300
+CellCenterFVM::preProcessSolutionImpl() => START
+CellCenterFVM::computeSpaceResidualImpl() => pre-processing startPreProcess1 
+CellCenterFVM::computeSpaceResidualImpl() => pre-processing endPreProcess1 
+CellCenterFVM::preProcessSolutionImpl() => END
+Applying BC Jet1 => START
+FVMCC_BaseBC::execute() called for TRS: SuperInlet
+Applying BC Jet1 => END
+Applying BC Jet2 => START
+FVMCC_BaseBC::execute() called for TRS: SuperOutlet
+Applying BC Jet2 => END
+FVMCC_ComputeRHS::execute() START
+LeastSquareP1PolyRec2D::computeGradients() => START
+LeastSquareP1PolyRec2D::computeGradients() => END
+TRS name = InnerCells
+TRS name = InnerFaces
+TRS name = PartitionFaces
+TRS name = SuperInlet
+BC name = Jet1
+TRS name = SuperOutlet
+BC name = Jet2
+FVMCC_ComputeRHS::execute() END
+BwdEuler : assembled linear system in 0.582499s
+StdParSolveSys::execute() => reusePC [0]
+KSP convergence reached at iteration: 26
+StdParSolveSys::execute() took 0.012652s
+PetscLSS::solveSys() WallTime: 0.012775s
+BwdEuler : solved linear system in 0.012998s
+ComputeL2Norm::GR_GetLocalValue() => m_vecnorm_name = rhs
+ComputeL2Norm::GR_GetLocalValue() => nbEqs = 4
+ComputeL2Norm::GR_GetLocalValue() => vecnorm.size() = 12712
+ComputeL2Norm::GR_GetLocalValue() => m_vecnorm_name = rhs
+ComputeL2Norm::GR_GetLocalValue() => nbEqs = 4
+ComputeL2Norm::GR_GetLocalValue() => vecnorm.size() = 12712
+ComputeL2Norm::GR_GetLocalValue() => m_vecnorm_name = rhs
+ComputeL2Norm::GR_GetLocalValue() => nbEqs = 4
+ComputeL2Norm::GR_GetLocalValue() => vecnorm.size() = 12712
+Opening file ./Jets2DFVM/result/convergence.plt.Default
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+StandardSubSystem::run() => m_errorEstimatorMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null4]
+StandardSubSystem::run() => m_dataPostProcessing.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null8]
+DataProcessingMethod::processData() for [Null8]
+StandardSubSystem::run() => m_couplerMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+StandardSubSystem::run() => m_meshAdapterMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null1]
+StandardSubSystem::run() => writeConvergenceOnScreen()
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEuler]
+Iter: 2       Res: [    0.8239728 0.85705555 1.6321258 ]  CFL: 300      CPUTime: 1.195952 Mem: 24.4062 MB
+
+StandardSubSystem::run() => writeSolution()
+SubSystemStatus::getCurrentTimeDim(): [refTime, currTime] = [1, 0]
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+StandardSubSystem::run() => m_errorEstimatorMethod.apply()
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null4]
+SubSystem WallTime: 1.22673s
+#
+###### UNSETUP PHASE ################
+#
+Total Number Iter: 2 Reached Residual: 0.823973 and took: 1.19667 sec
+StandardSubSystem::unsetup() => before MPI_Bcast
+StandardSubSystem::unsetup() => after MPI_Bcast
+StandardSubSystem::unsetup() => totalResidual = 0.823973
+StandardSubSystem::writeSolution() => output from [Tecplot] START
+ParWriteSolution::execute() => start
+ParWriteSolution::hasChangedMesh (iType = 0) => false
+ParWriteSolution::hasChangedMesh() => false
+ParWriteSolution::writeData() [Unstructured grid data] => start
+Opening file ./Jets2DFVM/result/jets2DFVM_out.plt
+ParWriteSolution::writeInnerData() [Unstructured grid data] => start
+Writing solution to ./Jets2DFVM/result/jets2DFVM_out.plt
+ParWriteSolution::hasChangedMesh (iType = 0) => false
+ParWriteSolution::writeNodeList() => start
+ParWriteSolution::writeNodeList() => offsets = [181, 220621]
+[0] => wOffset = 181, sendSize = 10020
+wSendSize = 10020, nodesStride = 6
+ParWriteSolution::writeNodeList() => end
+ParWriteSolution::writeInnerData() [Unstructured grid data] => end
+ParWriteSolution::writeData() [Unstructured grid data] => end
+ParWriteSolution::execute() => end
+StandardSubSystem::writeSolution() => output from [Tecplot] END
+Writing took 0.135184s
+StandardSubSystem::writeSolution() => output from [CFmesh] START
+ParCFmeshFileWriter::writeToFile() => IO rank is 0
+Opening file ./Jets2DFVM/result/jets2DFVM_out.CFmesh
+Nodes written 
+States written 
+Writing solution to: ./Jets2DFVM/result/jets2DFVM_out.CFmesh
+StandardSubSystem::writeSolution() => output from [CFmesh] END
+Writing took 0.032217s
+StandardSubSystem::unsetup() => OutputFormatter
+MultiMethodTuple::apply() => rank [0], group [Default], method [Tecplot]
+Method::unsetMethod() for [Tecplot] => start
+Method::unsetupCommandsAndStrategies() for [Tecplot] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [DataHandleOutput, DataHandleOutput] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for [Tecplot] => end
+MethodData::unsetup() for Data => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+MethodData::unsetup() for Data => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [Tecplot] => end
+MultiMethodTuple::apply() => rank [0], group [Default], method [CFmesh]
+Method::unsetMethod() for [CFmesh] => start
+Method::unsetupCommandsAndStrategies() for [CFmesh] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [DataHandleOutput, DataHandleOutput] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for [CFmesh] => end
+MethodData::unsetup() for Data => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+MethodData::unsetup() for Data => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [CFmesh] => end
+StandardSubSystem::unsetup() => ErrorEstimatorMethod
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null4]
+Method::unsetMethod() for [Null4] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [Null4] => end
+StandardSubSystem::unsetup() => SpaceMethod
+MultiMethodTuple::apply() => rank [0], group [Default], method [CellCenterFVM]
+Method::unsetMethod() for [CellCenterFVM] => start
+Method::unsetupCommandsAndStrategies() for [CellCenterFVM] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+NullStateInterpolator::unsetup()
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+NullStateInterpolator::unsetup()
+Method::unsetupCommandsAndStrategies() for Strategy [PolyReconstructor, LinearLS2D] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [Limiter, Venktn2D] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [NodalStatesExtrapolator, DistanceBased] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [ComputeFlux, Roe] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [GeoDataComputer, FVMCC] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+FVMCCGeoDataComputer<METHODDATA>::unsetup()
+Method::unsetupCommandsAndStrategies() for Strategy [DerivativeComputer, Null] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [ComputeFlux, Null] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [ComputeSourceTerm, Null] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [EquationFilter, Null] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+NullEquationFilter::unsetup() called!
+Method::unsetupCommandsAndStrategies() for [CellCenterFVM] => end
+MethodData::unsetup() for Data => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+MethodData::unsetup() for Data => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [CellCenterFVM] => end
+StandardSubSystem::unsetup() => LinearSystemSolver
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEulerLSS]
+Method::unsetMethod() for [BwdEulerLSS] => start
+Method::unsetupCommandsAndStrategies() for [BwdEulerLSS] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [ShellPreconditioner, Null] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for [BwdEulerLSS] => end
+MethodData::unsetup() for Data => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+MethodData::unsetup() for Data => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [BwdEulerLSS] => end
+StandardSubSystem::unsetup() => ConvergenceMethod
+MultiMethodTuple::apply() => rank [0], group [Default], method [BwdEuler]
+Method::unsetMethod() for [BwdEuler] => start
+Method::unsetupCommandsAndStrategies() for [BwdEuler] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [ComputeNorm, L2] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [FilterState, Identity] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for Strategy [FilterRHS, Identity] 
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetupCommandsAndStrategies() for [BwdEuler] => end
+MethodData::unsetup() for Data => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+MethodData::unsetup() for Data => end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [BwdEuler] => end
+StandardSubSystem::unsetup() => MeshAdapterMethod
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null1]
+Method::unsetMethod() for [Null1] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [Null1] => end
+StandardSubSystem::unsetup() => CouplerMethod
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null2]
+Method::unsetMethod() for [Null2] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [Null2] => end
+StandardSubSystem::unsetup() => MeshCreator
+StandardSubSystem::unsetup() => DataProcessingMethod (preprocessing)
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null7]
+Method::unsetMethod() for [Null7] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [Null7] => end
+StandardSubSystem::unsetup() => DataProcessingMethod (postprocessing)
+MultiMethodTuple::apply() => rank [0], group [Default], method [Null8]
+Method::unsetMethod() for [Null8] => start
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+Method::unsetMethod() for [Null8] => end
+-------------------------------------------------------------
+#
+###### SOCKETS UNPLUG PHASE #########
+#
+StandardSubSystem::deallocateAllSockets() => start
+StandardSubSystem::deallocateAllSockets() => end
+#
+###### DESTRUCTION SUBSYSTEM PHASE #########
+#
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 1
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => END
+ConvergenceMethodData::~ConvergenceMethodData()
+ComputeL2Norm::~ComputeL2Norm()
+ConvergenceMethod::~ConvergenceMethod()
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 1
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => END
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 1
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => END
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 2
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => B[1] IN
+VarSetTransformer::~VarSetTransformer() => B[1] OUT
+VarSetTransformer::~VarSetTransformer() => END
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 2
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => B[1] IN
+VarSetTransformer::~VarSetTransformer() => B[1] OUT
+VarSetTransformer::~VarSetTransformer() => END
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 2
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => B[1] IN
+VarSetTransformer::~VarSetTransformer() => B[1] OUT
+VarSetTransformer::~VarSetTransformer() => END
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 2
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => B[1] IN
+VarSetTransformer::~VarSetTransformer() => B[1] OUT
+VarSetTransformer::~VarSetTransformer() => END
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 2
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => B[1] IN
+VarSetTransformer::~VarSetTransformer() => B[1] OUT
+VarSetTransformer::~VarSetTransformer() => END
+VarSetTransformer::~VarSetTransformer() => START
+VarSetTransformer::~VarSetTransformer() => size = 2
+VarSetTransformer::~VarSetTransformer() => B[0] IN
+VarSetTransformer::~VarSetTransformer() => B[0] OUT
+VarSetTransformer::~VarSetTransformer() => B[1] IN
+VarSetTransformer::~VarSetTransformer() => B[1] OUT
+VarSetTransformer::~VarSetTransformer() => END
+NodalStatesExtrapolator<DATA>::~NodalStatesExtrapolator()
+PhysicalModel unset!
+MeshData::deallocateSockets() => start
+MeshData::deallocateSockets() => end
+SMaestro::control() end
+SetupObject::unsetup() => start
+SetupObject::unsetup() => end
+-------------------------------------------------------------
+COOLFluiD Environment Terminating
+Terminating Hook Modules ...
+Terminated PETSc
+Terminating Parallel Environment : Model MPI
+-------------------------------------------------------------
+COOLFluiD Environment Terminated
+-------------------------------------------------------------
+Exit value 0
