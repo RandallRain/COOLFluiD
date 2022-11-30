@@ -269,6 +269,7 @@ protected:
   Common::SafePtr< std::vector<Common::SelfRegistPtr<SourceTerm> > > _stComputers;
   
   // equation filters
+  // a Strategy, for what?
   typedef Framework::EquationFilter<CellCenterFVMData> EqFilter;
   Common::SafePtr< std::vector<Common::SelfRegistPtr<EqFilter> > > _eqFilters;
   

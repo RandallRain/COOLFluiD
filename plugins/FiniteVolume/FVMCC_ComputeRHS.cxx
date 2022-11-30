@@ -164,160 +164,150 @@ void FVMCC_ComputeRHS::execute()
   // a MethodStrategy could set it to a different value afterwards, before entering here
   geoData.allCells = getMethodData().getBuildAllCells();
   
+  // TRS name with no boundaries
   const vector<string>& noBCTRS = getMethodData().getTRSsWithNoBC();
+  // BC map: TRS index -> the corresponding BC command
   SafePtr<CFMap<CFuint, FVMCC_BC*> > bcMap = getMethodData().getMapBC();
   
-  for (CFuint iTRS = 0; iTRS < nbTRSs; ++iTRS) {
+  // loop all TRSs
+  for (CFuint iTRS = 0; iTRS < nbTRSs; ++iTRS)
+  {
     SafePtr<TopologicalRegionSet> currTrs = trs[iTRS];
     
     CFLog(VERBOSE, "TRS name = " << currTrs->getName() << "\n");
     // the faces on the boundary of the partition don't have to
     // be processed (their fluxes could give NaN)
     if (currTrs->getName() != "PartitionFaces" && currTrs->getName() != "InnerCells" && 
-	!binary_search(noBCTRS.begin(), noBCTRS.end(), currTrs->getName())) {
-      
-      if (currTrs->hasTag("writable")) {
-	_currBC = bcMap->find(iTRS);
+	        !binary_search(noBCTRS.begin(), noBCTRS.end(), currTrs->getName()))
+    {  
+      if (currTrs->hasTag("writable"))
+      {
+        _currBC = bcMap->find(iTRS);
 	
-	// set the flag telling if the ghost states have to be placed on the face itself
-	_currBC->setPutGhostsOnFace();
+	      // set the flag telling if the ghost states have to be placed on the face itself
+	      _currBC->setPutGhostsOnFace();
 	
         CFLog(VERBOSE, "BC name = " << _currBC->getName() << "\n");
 	
         geoData.isBFace = true;
 	
-	// set the flags specifying the variables for which the boundary condition
-	// imposes constant extrapolation (zero gradient)
-	_polyRec->setZeroGradient(_currBC->getZeroGradientsFlags());
+	      // set the flags specifying the variables for which the boundary condition
+	      // imposes constant extrapolation (zero gradient)
+	      _polyRec->setZeroGradient(_currBC->getZeroGradientsFlags());
       }
-      else {
+      else 
+      {
         geoData.isBFace = false;
-	_polyRec->setZeroGradient(&zeroGrad);
+	      _polyRec->setZeroGradient(&zeroGrad);
       }
       
       // set the current TRS in the geoData
       geoData.faces = currTrs;
       
-      const CFuint nbTrsFaces = currTrs->getLocalNbGeoEnts();
-      for (CFuint iFace = 0; iFace < nbTrsFaces; ++iFace, ++_faceIdx) {
+      // Number of GEs(faces) in the TRS
+      const CFuint nbTrsFaces = currTrs->getLocalNbGeoEnts(); 
+
+      // Loop all faces in this TRS
+      for (CFuint iFace = 0; iFace < nbTrsFaces; ++iFace, ++_faceIdx)
+      {
         CFLogDebugMed( "iFace = " << iFace << "\n");
 	
-    	// reset the equation subsystem descriptor
-	PhysicalModelStack::getActive()->resetEquationSubSysDescriptor();
+    	  // reset the equation subsystem descriptor
+	      PhysicalModelStack::getActive()->resetEquationSubSysDescriptor();
 	
-	// build the GeometricEntity
+	      // build the GeometricEntity for iFace-th face
         geoData.idx = iFace;
         _currFace = geoBuilder->buildGE();
-	
-	if (_currFace->getState(0)->isParUpdatable() || 
-	    (!_currFace->getState(1)->isGhost() && _currFace->getState(1)->isParUpdatable())) {
-	  
-	  // set the data for the FaceIntegrator
-	  setFaceIntegratorData();
-	  
-	  // cout << "states = " << _currFace->getState(0)->getLocalID()  << ", " <<  _currFace->getState(1)->getLocalID() << endl;
-	  
-	  // extrapolate (and LIMIT, if the reconstruction is linear or more)
-	  // the solution in the quadrature points
-	  _polyRec->extrapolate(_currFace);
-	
-	  // compute the physical data for each left and right reconstructed
-	  // state and in the left and right cell centers
-	  CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before computePhysicalData()\n");
-	  computePhysicalData();
-	  CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after computePhysicalData()\n");
-	  
-	  // a jacobian free method requires to re-compute the update coefficient every time the 
-	  // residual is calculated to get F*v from the finite difference formula
-	  // in particular the time dependent part of the residual depend on a updateCoeff
-	  // that has to be up-to-date
-	  getMethodData().setIsPerturb(false);
-	  
-	  // cout << "L = " << *_currFace->getState(0) << endl;
-	  // cout << "R = " << *_currFace->getState(1) << endl;
-	  
-	  const bool isBFace = _currFace->getState(1)->isGhost();
-	  
-	  // this initialization is fundamental, especially for cases with coupling
-	  // where some equation subsystems don't have convective terms
-	  _flux = 0.; 
-	  CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before conv computeFlux()\n");
-	  if (!isBFace) {
-	    _fluxSplitter->computeFlux(_flux);
 
-
-	  }
-	  else {
-	    _currBC->computeFlux(_flux);
-	  }
-	  CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after conv computeFlux()\n");
-	  // cout.precision(12);cout << currTrs->getName() << " C flux = " << _flux << endl;
+        // state 0 and state 1: left state and right state
+	      if (_currFace->getState(0)->isParUpdatable() || 
+	            (!_currFace->getState(1)->isGhost() && 
+                _currFace->getState(1)->isParUpdatable()))
+        {
+	        // set the data for the FaceIntegrator
+	        setFaceIntegratorData();
 	  
-	  computeInterConvDiff();
+          // extrapolate (and LIMIT, if the reconstruction is linear or more)
+          // the solution in the quadrature points
+          _polyRec->extrapolate(_currFace);
+      
+          // compute the physical data for each left and right reconstructed
+          // state and in the left and right cell centers
+          CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before computePhysicalData()\n");
+          computePhysicalData();
+          CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after computePhysicalData()\n");
+        
+          // a jacobian free method requires to re-compute the update coefficient every time the 
+          // residual is calculated to get F*v from the finite difference formula
+          // in particular the time dependent part of the residual depend on a updateCoeff
+          // that has to be up-to-date
+          getMethodData().setIsPerturb(false);
+        
+          const bool isBFace = _currFace->getState(1)->isGhost();
 	  
-	  _isDiffusionActive = (*_eqFilters)[0]->filterOnGeo(_currFace);
+          // this initialization is fundamental, especially for cases with coupling
+          // where some equation subsystems don't have convective terms
+	        _flux = 0.; 
+	        CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before conv computeFlux()\n");
+	        if (!isBFace) 
+          {
+            // inner faces?
+	          _fluxSplitter->computeFlux(_flux);
+	        }
+	        else
+          {
+            // boundary faces?
+	          _currBC->computeFlux(_flux);
+	        }
+	        CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after conv computeFlux()\n");
 	  
-	  if (_hasDiffusiveTerm && _isDiffusionActive) {
-	    // reset to false the flag telling to freeze the diffusive coefficients
-	    _diffVar->setFreezeCoeff(false);
+	        computeInterConvDiff();
+	  
+	        _isDiffusionActive = (*_eqFilters)[0]->filterOnGeo(_currFace);
+	  
+	        if (_hasDiffusiveTerm && _isDiffusionActive)
+          {
+	          // reset to false the flag telling to freeze the diffusive coefficients
+	          _diffVar->setFreezeCoeff(false);
 	    
-	    // put virtual function here or parameter
-	    if (_extrapolateInNodes) {
-	      _nodalExtrapolator->extrapolateInNodes(*_currFace->getNodes());
-	    }
+	          // put virtual function here or parameter
+	          if (_extrapolateInNodes)
+            {
+	            _nodalExtrapolator->extrapolateInNodes(*_currFace->getNodes());
+	          }
 	    
-	    // this initialization is fundamental, especially for cases with coupling
-	    // where some equation subsystems don't have diffusive terms
-	    _dFlux = 0.;
-	    CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before diff computeFlux()\n");
-	    _diffusiveFlux->computeFlux(_dFlux);
-	    CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after diff computeFlux()\n");
-	    _flux -= _dFlux;
-	  }
-
-	  /*if (_flux.size() == 9 && currTrs->getName() == "InnerFaces") {
-	    cout.precision(12);cout << "SL[" << _currFace->getState(0)->getLocalID() << "] = [" << *_currFace->getState(0) << "]\n";
-	    cout.precision(12);cout << "SR[" << _currFace->getState(1)->getLocalID() << "] = [" << *_currFace->getState(1) << "]\n";
-	    cout.precision(12);cout << "["<< iFace << "] in " << currTrs->getName() << " C+D flux = " << _flux << endl; 
-	    EXIT_AT(100);
-	    }*/
+            // this initialization is fundamental, especially for cases with coupling
+            // where some equation subsystems don't have diffusive terms
+            _dFlux = 0.;
+            CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before diff computeFlux()\n");
+            _diffusiveFlux->computeFlux(_dFlux);
+            CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after diff computeFlux()\n");
+            _flux -= _dFlux;
+	        }
 	  
-	  CFLogDebugMed("flux = " <<  _flux  << "\n");
+	         CFLogDebugMed("flux = " <<  _flux  << "\n");
 	  
-	  // compute the source term
-	  if (hasSourceTerm) {
-	    CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before computeSourceTerm()\n");
-	    computeSourceTerm();
-	    CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after computeSourceTerm()\n");
-	  }
+          // compute the source term
+          if (hasSourceTerm) {
+            CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before computeSourceTerm()\n");
+            computeSourceTerm();
+            CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after computeSourceTerm()\n");
+          }
 	  
-	  // compute the contribution to the RHS
-	  updateRHS();
-	  // source term jacobians are only computed while processing internal faces 
-	  CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before computeRHSJacobian()\n");
-	  computeRHSJacobian();
-	  CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after computeRHSJacobian()\n");
-	}
+          // compute the contribution to the RHS
+          updateRHS();
+          // source term jacobians are only computed while processing internal faces 
+          CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => before computeRHSJacobian()\n");
+          computeRHSJacobian();
+          CFLog(DEBUG_MIN, "FVMCC_ComputeRHS::execute() => after computeRHSJacobian()\n");
+	      }
 	
-	geoBuilder->releaseGE(); 
+	      geoBuilder->releaseGE(); 
       }
     }
   }
     
   finalizeComputationRHS();
-  
-  /*const CFuint nbEqs = PhysicalModelStack::getActive()->getNbEq();
-  if (nbEqs == 9) {
-  DataHandle<CFreal> rhs = socket_rhs.getDataHandle();
-  DataHandle<State*, GLOBAL> states = socket_states.getDataHandle();
-  ofstream fout("rhs.dat");
-  for (CFuint iState = 0; iState < states.size(); ++iState) {
-    for (CFuint iEq = 0; iEq < nbEqs; ++iEq) {
-      fout.precision(14); fout.setf(ios::scientific,ios::floatfield); fout << rhs(iState, iEq, nbEqs) << " ";
-    }
-    fout << endl;
-  }
-  }*/
   
   CFLog(VERBOSE, "FVMCC_ComputeRHS::execute() END\n");
   

@@ -119,7 +119,7 @@ void FVMCC_FluxSplitter::computeFlux(RealVector& result)
   } 
   else {
     const bool isBFace =  currFace->getState(1)->isGhost();
-      (!isBFace) ? integrateFluxAndJacob(result) : integrateFluxOnly(result);
+    (!isBFace) ? integrateFluxAndJacob(result) : integrateFluxOnly(result);
   }
 }
       

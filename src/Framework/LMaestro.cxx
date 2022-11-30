@@ -126,39 +126,39 @@ Common::Signal::return_t LMaestro::control ( Common::Signal::arg_t input )
       
       const CFuint rank = PE::GetPE().GetRank("Default");
       if (m_sim->isSubSystemRank(rank, currSubsysName)) {
-	CFLog(INFO, "#\n###### STARTING SUBSYSTEM [" << currSubsysName << "] ######\n#\n");
-	event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_BUILDSUBSYSTEM"), msg );
+	      CFLog(INFO, "#\n###### STARTING SUBSYSTEM [" << currSubsysName << "] ######\n#\n");
+	      event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_BUILDSUBSYSTEM"), msg );
 	
-	CFLog(INFO, "#\n###### CONFIG PHASE #################\n#\n");
-	event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_CONFIGSUBSYSTEM"), msg );
+	      CFLog(INFO, "#\n###### CONFIG PHASE #################\n#\n");
+	      event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_CONFIGSUBSYSTEM"), msg );
 	
-	CFLog(INFO, "#\n###### SOCKETS PLUG PHASE ###########\n#\n");
-	event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_PLUGSOCKETS"), msg );
+	      CFLog(INFO, "#\n###### SOCKETS PLUG PHASE ###########\n#\n");
+	      event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_PLUGSOCKETS"), msg );
 
-	// allow to restart from the previous saved iteration
-	if ((simStatus.isRestart()) && (simStatus.getNbIter() > 1)) {
-	  CFLog(INFO, "#\n### MODIFY RESTART \n#\n");
-	  event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_MODIFYRESTART"), msg );
-	}
+        // allow to restart from the previous saved iteration
+        if ((simStatus.isRestart()) && (simStatus.getNbIter() > 1)) {
+          CFLog(INFO, "#\n### MODIFY RESTART \n#\n");
+          event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_MODIFYRESTART"), msg );
+        }
 	
-	CFLog(INFO, "#\n###### BUILD PHASE ##################\n#\n");
-	event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_BUILDPHYSICALMODEL"), msg );
-	event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_BUILDMESHDATA"), msg );
+	      CFLog(INFO, "#\n###### BUILD PHASE ##################\n#\n");
+	      event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_BUILDPHYSICALMODEL"), msg );
+	      event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_BUILDMESHDATA"), msg );
 	
-	CFLog(INFO, "#\n###### SETUP PHASE ##################\n#\n");
-	event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_SETUP"), msg );
+	      CFLog(INFO, "#\n###### SETUP PHASE ##################\n#\n");
+	      event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_SETUP"), msg );
 	
-	CFLog(INFO, "#\n###### RUN PHASE ####################\n#\n");
-	event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_RUN"), msg );
+	      CFLog(INFO, "#\n###### RUN PHASE ####################\n#\n");
+	      event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_RUN"), msg );
 	
-	CFLog(INFO, "#\n###### UNSETUP PHASE ################\n#\n");
-	event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_UNSETUP"), msg );
+	      CFLog(INFO, "#\n###### UNSETUP PHASE ################\n#\n");
+	      event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_UNSETUP"), msg );
 	
-	CFLog(INFO, "#\n###### SOCKETS UNPLUG PHASE #########\n#\n");
-	event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_UNPLUGSOCKETS"), msg );
+	      CFLog(INFO, "#\n###### SOCKETS UNPLUG PHASE #########\n#\n");
+	      event_handler->call_signal (event_handler->key(currSubsysName, "CF_ON_MAESTRO_UNPLUGSOCKETS"), msg );
 	
-	CFLog(INFO, "#\n###### DESTRUCTION SUBSYSTEM PHASE #########\n#\n");
-	event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_DESTROYSUBSYSTEM"), msg );
+	      CFLog(INFO, "#\n###### DESTRUCTION SUBSYSTEM PHASE #########\n#\n");
+	      event_handler->call_signal (event_handler->key("", "CF_ON_MAESTRO_DESTROYSUBSYSTEM"), msg );
       }
     }
   }

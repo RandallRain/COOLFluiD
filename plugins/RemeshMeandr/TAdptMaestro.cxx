@@ -103,7 +103,7 @@ Common::Signal::return_t TAdptMaestro::control ( Common::Signal::arg_t input )
   for ( CFint it = 0; !m_stopcriteria->isSatisfied(); ++it )
   {
 
-  CFout << " ### --- Iteration: " << SimulationStatus::getInstance().getNbIter() << "\n";
+    CFout << " ### --- Iteration: " << SimulationStatus::getInstance().getNbIter() << "\n";
 
     simStatus.incrementNbIter();
 
