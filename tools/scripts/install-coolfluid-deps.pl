@@ -9,7 +9,7 @@
 # Modules
 #==========================================================================
 use Term::ANSIColor;
-use Getopt::Long;
+use Getopt::Long;     # extended processing of long command line options
 use File::Path;
 use File::Copy;
 
@@ -26,12 +26,12 @@ my $WARNCOLOR = "bold yellow";
 # Global Variables
 #==========================================================================
 
-my $home = $ENV{HOME};
-my $user = $ENV{USER};
-my $arch = get_arch();
+my $home = $ENV{HOME};    # home directory
+my $user = $ENV{USER};    # user name
+my $arch = get_arch();    # system architecture
 
-my $opt_help          = 0;
-my $opt_dryrun        = 0;
+my $opt_help          = 0;    # --help option
+my $opt_dryrun        = 0;    # --dryrun option
 my $opt_nocolor       = 0;
 my $opt_envars        = 0;
 my $opt_genconf       = 0;
@@ -48,7 +48,7 @@ my $opt_compile       = 0;
 my $opt_fetchonly     = 0;
 my $opt_many_mpi      = 0;
 my $opt_with_cuda     = 0;
-my $opt_static        = "0";
+my $opt_static        = "0";  # static link
 my $opt_install_dir   = "$home/local/coolfluid_deps/$arch";
 #my $opt_install_dir   = "$home/COOLFluiD_DEPS";
 my $opt_install_mpi_dir = "";
@@ -58,6 +58,7 @@ my $opt_parmetis_dir = "";
 my $opt_cuda_bin  = "";
 my $opt_cmake_dir     = "";
 my $opt_confile       = "coolfluid.conf";
+# temporary directory for build packages
 my $opt_tmp_dir       = "$home/coolfluid_tmp";
 my $opt_build         = "optim";
 #my $opt_dwnldsrc      = "http://coolfluidsrv.vki.ac.be/webfiles/coolfluid/packages";
@@ -159,37 +160,37 @@ my %packages = (  #  version   default install priority      function
 
 sub parse_commandline() # Parse command line
 {
-    $opt_help=1 unless GetOptions (
-        'help'                    => \$opt_help,
-        'nocolor'                 => \$opt_nocolor,
-        'envars'                  => \$opt_envars,
-        'genconf'                 => \$opt_genconf,
-        'debug=s'                 => \$opt_debug,
-        'int64=s'                 => \$opt_int64,
-        'static=s'                => \$opt_static,
-        'viennacl=s'              => \$opt_viennacl,
-	      'nompi'                   => \$opt_nompi,
-        'many-mpi'                => \$opt_many_mpi,
-        'mpi=s'                   => \$opt_mpi,
-        'mpi-dir=s'               => \$opt_mpi_dir,
-        'fetchonly'               => \$opt_fetchonly,
-        'dry-run'                 => \$opt_dryrun,
-        'install-dir=s'           => \$opt_install_dir,
-        'install-mpi-dir=s'       => \$opt_install_mpi_dir,
-        'cmake-dir=s'             => \$opt_cmake_dir,
-        'cuda-dir=s'              => \$opt_cuda_dir,
-	      'tmp-dir=s'               => \$opt_tmp_dir,
-        'dwnldsrc=s'              => \$opt_dwnldsrc,
-        'branch=s'                => \$opt_branch,
-        'build=s'                 => \$opt_build,
-        'makeopts=s'              => \$opt_makeopts,
-        'install=s'               => \@opt_install,
-        'install-petsc-dir=s'     => \$opt_petsc_dir,
-	      'install-parmetis-dir=s'  => \$opt_parmetis_dir,
-        'cray'                    => \$opt_cray,
-        'ibmgnu'                  => \$opt_ibmgnu,
-	      'blaslapack-dir=s'        => \$opt_blaslapack_dir,
-    );
+  $opt_help=1 unless GetOptions (
+    'help'                    => \$opt_help,
+    'nocolor'                 => \$opt_nocolor,
+    'envars'                  => \$opt_envars,
+    'genconf'                 => \$opt_genconf,
+    'debug=s'                 => \$opt_debug,
+    'int64=s'                 => \$opt_int64,
+    'static=s'                => \$opt_static,
+    'viennacl=s'              => \$opt_viennacl,
+    'nompi'                   => \$opt_nompi,
+    'many-mpi'                => \$opt_many_mpi,
+    'mpi=s'                   => \$opt_mpi,
+    'mpi-dir=s'               => \$opt_mpi_dir,
+    'fetchonly'               => \$opt_fetchonly,
+    'dry-run'                 => \$opt_dryrun,
+    'install-dir=s'           => \$opt_install_dir,
+    'install-mpi-dir=s'       => \$opt_install_mpi_dir,
+    'cmake-dir=s'             => \$opt_cmake_dir,
+    'cuda-dir=s'              => \$opt_cuda_dir,
+    'tmp-dir=s'               => \$opt_tmp_dir,
+    'dwnldsrc=s'              => \$opt_dwnldsrc,
+    'branch=s'                => \$opt_branch,
+    'build=s'                 => \$opt_build,
+    'makeopts=s'              => \$opt_makeopts,
+    'install=s'               => \@opt_install,
+    'install-petsc-dir=s'     => \$opt_petsc_dir,
+    'install-parmetis-dir=s'  => \$opt_parmetis_dir,
+    'cray'                    => \$opt_cray,
+    'ibmgnu'                  => \$opt_ibmgnu,
+    'blaslapack-dir=s'        => \$opt_blaslapack_dir,
+  );
 
     # show help if required
     if ($opt_help != 0)
@@ -344,7 +345,7 @@ sub run_command($)
 }
 
 #==========================================================================
-
+# change directory
 sub safe_chdir($)
 {
     my ($dir)=@_;
@@ -1603,10 +1604,10 @@ sub install_boost()
     safe_chdir("$opt_tmp_dir/$pack/");
 
     if ($version  eq "1_42_0")
-      {
-	# build toolset
-	safe_chdir("tools/jam/src");
-      }
+    {
+	    # build toolset
+	    safe_chdir("tools/jam/src");
+    }
     
     my $toolset = "gcc";
     if($ENV{CC} eq "icc") { $toolset = "intel-linux"; }
@@ -1621,8 +1622,9 @@ sub install_boost()
     if($arch eq "i686")   { $boost_arch = "linuxx86" ;  }
 
     if(is_mac())         
-    { 
-	  $toolset = "darwin";
+    {
+      # Mac platform
+	    $toolset = "darwin";
       $boost_arch = "macosxx86"; 
       
       # If Snow Leopard
@@ -1638,53 +1640,68 @@ sub install_boost()
     }
 
     if ($version  eq "1_42_0")
-      {
-	# disable compression filters in boost because some systems like ubuntu
-	# dont have the zlib-dev installed by default
-	$ENV{NO_COMPRESSION} = "1";
+    {
+	    # disable compression filters in boost because some systems like ubuntu
+	    # dont have the zlib-dev installed by default
+	    $ENV{NO_COMPRESSION} = "1";
 	
-	run_command_or_die("sh build.sh $toolset");
+	    run_command_or_die("sh build.sh $toolset");
 	
-	# build boost libs
-	safe_chdir("../../..");
-      }    
+	    # build boost libs
+	    safe_chdir("../../..");
+    }    
     
     my $boostmpiopt=" --without-mpi ";
-    unless ($opt_nompi or $version  eq "1_59_0" or $version eq "1_62_0" or $version eq "1_66_0" or $version eq "1_70_0" or $version eq "1_72_0" or $version eq "1_76_0" or $version eq "1_79_0")  {
+    unless ($opt_nompi or 
+            $version eq "1_59_0" or 
+            $version eq "1_62_0" or 
+            $version eq "1_66_0" or 
+            $version eq "1_70_0" or 
+            $version eq "1_72_0" or 
+            $version eq "1_76_0" or 
+            $version eq "1_79_0")  
+    {
       $boostmpiopt=" --with-mpi cxxflags=-DBOOST_MPI_HOMOGENEOUS ";
-      open  (USERCONFIGJAM, ">>./tools/build/v2/user-config.jam") || die("Cannot Open File ./tools/build/v2/user-config.jam") ;
+      open(USERCONFIGJAM, ">>./tools/build/v2/user-config.jam") || 
+        die("Cannot Open File ./tools/build/v2/user-config.jam");
       print  USERCONFIGJAM <<ZZZ;
 
 
 # ----------------------
 # mpi configuration.
 # ----------------------
-using mpi : $opt_mpi_dir/bin/mpicxx ;
+using mpi : $opt_mpi_dir/bin/mpicxx;
 
 ZZZ
       close (USERCONFIGJAM); 
     }
     
     if ($version  eq "1_42_0") 
-      {
-	run_command_or_die("./tools/jam/src/bin.$boost_arch/bjam --prefix=$opt_install_dir $opt_makeopts --with-test --with-thread --with-iostreams --with-filesystem --with-system --with-regex --with-date_time --with-program_options $boostmpiopt toolset=$toolset threading=multi variant=release stage install");
-      }
+    {
+	    run_command_or_die("./tools/jam/src/bin.$boost_arch/bjam --prefix=$opt_install_dir $opt_makeopts --with-test --with-thread --with-iostreams --with-filesystem --with-system --with-regex --with-date_time --with-program_options $boostmpiopt toolset=$toolset threading=multi variant=release stage install");
+    }
     
     my $static_link = "";
     if ( $opt_static eq "1" ) 
     {
        $static_link = " link=static";
     }
-    if ($version  eq "1_54_0" or $version  eq "1_59_0" or $version  eq "1_62_0" or $version eq "1_66_0" or $version eq "1_70_0" or $version eq "1_72_0" or $version eq "1_76_0") 
-      {
-	run_command_or_die("./bootstrap.sh --prefix=$opt_install_dir -with-libraries=test,thread,iostreams,filesystem,system,regex,date_time toolset=$toolset threading=multi variant=release stage");
-	run_command_or_die("./b2 $static_link install");
-      }
-   if ($version eq "1_79_0")
-      {
-        run_command_or_die("./bootstrap.sh --prefix=$opt_install_dir -with-libraries=test,thread,iostreams,filesystem,system,regex,date_time,atomic toolset=$toolset threading=multi variant=release stage");
-        run_command_or_die("./b2 $static_link install");
-      } 
+    if ($version  eq "1_54_0" or 
+        $version  eq "1_59_0" or 
+        $version  eq "1_62_0" or 
+        $version eq "1_66_0" or
+        $version eq "1_70_0" or 
+        $version eq "1_72_0" or 
+        $version eq "1_76_0") 
+    {
+	    run_command_or_die("./bootstrap.sh --prefix=$opt_install_dir -with-libraries=test,thread,iostreams,filesystem,system,regex,date_time toolset=$toolset threading=multi variant=release stage");
+	    run_command_or_die("./b2 $static_link install");
+    }
+    if ($version eq "1_79_0")
+    {
+      run_command_or_die("./bootstrap.sh --prefix=$opt_install_dir -with-libraries=test,thread,iostreams,filesystem,system,regex,date_time,atomic toolset=$toolset threading=multi variant=release stage");
+      run_command_or_die("./b2 $static_link install");
+    } 
   }
 }
 
