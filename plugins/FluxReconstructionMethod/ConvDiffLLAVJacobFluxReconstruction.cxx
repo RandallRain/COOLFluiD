@@ -3702,8 +3702,8 @@ void ConvDiffLLAVJacobFluxReconstruction::setup()
       
       for (CFuint jSol = 0; jSol < m_nbrSolPnts; ++jSol)
       {
-        m_gradientStateJacobian[LEFT][iSol][iSide][jSol].resize(m_dim+m_ndimplus);
-        m_gradientStateJacobian[RIGHT][iSol][iSide][jSol].resize(m_dim+m_ndimplus);
+        m_gradientStateJacobian[LEFT][iSol][iSide][jSol].resize(m_dim);
+        m_gradientStateJacobian[RIGHT][iSol][iSide][jSol].resize(m_dim);
       }
     }
 
@@ -3788,9 +3788,17 @@ void ConvDiffLLAVJacobFluxReconstruction::setup()
   }
   else if (m_dim == 3)
   {
-    for (CFuint idx = 0; idx < (m_order)*(m_order)*(m_order); ++idx)
-    {
-      temp(idx,idx) = 1.0;
+    if (m_ndimplus==4){  //if Tetra
+      for (CFuint idx = 0; idx < (m_order)*(m_order+1)*(m_order+2)/6; ++idx)
+      {
+        temp(idx,idx) = 1.0;
+      }
+    }
+    else{
+      for (CFuint idx = 0; idx < (m_order)*(m_order)*(m_order); ++idx)
+      {
+        temp(idx,idx) = 1.0;
+      }
     }
   }
   
