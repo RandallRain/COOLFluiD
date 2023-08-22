@@ -74,6 +74,7 @@ public: // methods
 					 const RealVector& normal);
   
   /**
+   * How to Invoke the non virtual functions from the base class pointer.
    * Set the first right eigen vector (corresponding to \f$\vec{u}\cdot\vec{n}\f$}
    */
   void setEigenVect1(RealVector& r1,

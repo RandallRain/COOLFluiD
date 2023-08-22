@@ -96,7 +96,7 @@ public: // classes
    * Get the speed
    */
   CFreal getSpeed(const Framework::State& state) const;
-  
+
   /**
    * Give dimensional values to the adimensional state variables
    */

@@ -139,6 +139,8 @@ void BwdEuler::takeStepImpl()
   Common::Stopwatch<Common::WallTime> timer;
   timer.restart();
 
+  // Invoke a space method using collaborator
+  // Assmeble the linear system
   getMethodData()->getCollaborator<SpaceMethod>()->computeSpaceResidual(1.0);
   getMethodData()->getCollaborator<SpaceMethod>()->computeTimeResidual(1.0);
 
@@ -146,6 +148,7 @@ void BwdEuler::takeStepImpl()
   CFLog(INFO, "BwdEuler : assembled linear system in " << timer << "s\n");
   timer.restart();
 
+  // Solve the linear system
   getLinearSystemSolver().apply(mem_fun(&LinearSystemSolver::solveSys),
 				m_data->getNbLSSToSolveAtOnce());
   timer.stop();

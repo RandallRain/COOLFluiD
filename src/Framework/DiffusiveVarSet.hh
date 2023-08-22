@@ -30,6 +30,7 @@ namespace COOLFluiD {
 /// This class represents the basic interface for a diffusive
 /// variable set, which provides physical model dependent data
 /// and methods associated to a choice of variables
+/// A variable set perspective for diffusive term
 /// @author Andrea Lani
 class Framework_API DiffusiveVarSet : public Common::OwnedObject,
                         public Config::ConfigObject,

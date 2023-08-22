@@ -154,6 +154,7 @@ function( cf_add_case )
         if( NOT ( "${CFcheckresidual}" STREQUAL "" ) )
            message(FATAL_ERROR "Syntax error for testcase residual: ${_TEST_CFCASE_SHORT}")
         endif()
+        # Test for residual
         list(APPEND _TEST_COMMAND "--residual" "${CFtargetResidual}")
       endif()
 

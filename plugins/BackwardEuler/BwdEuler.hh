@@ -24,7 +24,7 @@ namespace COOLFluiD {
 
 //////////////////////////////////////////////////////////////////////////////
 
-/// This class defines a ConvergenceMethod that implements the Explicit
+/// This class defines a ConvergenceMethod that implements the Implicit
 /// time stepping algorithm of first order.
 /// @author Andrea Lani
 class BwdEuler : public Framework::ConvergenceMethod {
@@ -57,7 +57,8 @@ protected: // helper functions
 
 protected: // abstract interface implementations
 
-  /// Take one timestep
+  /// Take one timestep.
+  /// The entry point for SubSystem convergence method.
   /// @see ConvergenceMethod::takeStep()
   virtual void takeStepImpl();
 

@@ -223,6 +223,7 @@ public:
 protected:
 
   /// Solution variables set
+  /// A variable set perspective for convective terms
   Common::SelfRegistPtr<Framework::ConvectiveVarSet> _solutionVar;
 
   /// Update variables set

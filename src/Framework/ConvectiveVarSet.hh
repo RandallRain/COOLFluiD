@@ -31,7 +31,8 @@ namespace COOLFluiD {
 
 /// This class represents the basic interface for a variable set,
 /// which provides physical model dependent data and methods
-/// associated to a choice of variables
+/// associated to a choice of variables.
+/// A variable set perspective for convective terms
 /// @author Andrea Lani
 /// @author Tiago Quintino
 class Framework_API ConvectiveVarSet :
