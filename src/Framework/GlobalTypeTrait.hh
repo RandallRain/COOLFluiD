@@ -18,7 +18,8 @@ namespace COOLFluiD {
     namespace Framework {
 
 //////////////////////////////////////////////////////////////////////////////
-
+// Type traits for different types using 
+// class-template partial specialization.
 template <typename T>
 class GlobalTypeTrait
 {

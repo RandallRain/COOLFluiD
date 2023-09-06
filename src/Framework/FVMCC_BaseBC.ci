@@ -176,6 +176,7 @@ void FVMCC_BaseBC<BASE>::executeOnTrs()
     GeometricEntity *const face = geoBuilder->buildGE();
     this->getMethodData().getCurrentFace() = face;
     
+    // Deal with this boundary condition for one face
     setGhostState(face);
     
     // release the GeometricEntity

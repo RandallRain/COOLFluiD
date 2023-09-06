@@ -179,6 +179,7 @@ private: // functions
   size_t m_esize;
     
   /// communication pattern
+  /// Parallel info about data exchange
   CPATTERN* m_pattern;
 };
       

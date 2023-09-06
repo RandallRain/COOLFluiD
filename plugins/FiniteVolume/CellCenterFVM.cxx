@@ -493,9 +493,11 @@ void CellCenterFVM::applyBCImpl()
   cf_assert(isSetup());
   cf_assert(isConfigured());
   
+  // Deal with different boundary conditions
   for(CFuint i = 0; i < _bcs.size(); ++i) {
     cf_assert(_bcs[i].isNotNull());
     CFLog(VERBOSE, "Applying BC " << _bcs[i]->getName() << " => START\n");
+    // Apply this boundary condition
     _bcs[i]->execute();
     CFLog(VERBOSE, "Applying BC " << _bcs[i]->getName() << " => END\n");
   }
